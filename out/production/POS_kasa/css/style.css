@@ -1,0 +1,6 @@
+#mainGridLogin{
+    -fx-background-image: url("/img/background.jpg");
+    -fx-font-size: 14px;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
