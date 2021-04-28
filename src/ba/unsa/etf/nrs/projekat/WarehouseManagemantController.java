@@ -26,7 +26,7 @@ public class WarehouseManagemantController implements Initializable {
     public ListView listProducts;
     public TextField fldQuantity;
     public TextField fldBarCode;
-    public ObservableList<Product> products = FXCollections.observableArrayList();
+    public static ObservableList<Product> products = FXCollections.observableArrayList();
     private Product selectedProduct ;
 
     public void btnAddProduct(ActionEvent actionEvent) {
@@ -40,7 +40,7 @@ public class WarehouseManagemantController implements Initializable {
     }
 
     public void btnRemove(ActionEvent actionEvent) {
-        if(fldQuantity.getText()!="") {
+        if(!fldQuantity.getText().equals("")) {
             deleteProductQuantity(Integer.parseInt(fldQuantity.getText()));
         }else {
             deleteProduct(selectedProduct);

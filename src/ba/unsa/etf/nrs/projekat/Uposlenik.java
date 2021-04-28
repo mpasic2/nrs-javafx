@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Uposlenik {
 
-    enum Uloga{Administrator, Skladistar, Kasir}
+    public enum Uloga{Administrator, Skladistar, Kasir}
 
     SimpleStringProperty ime;
     SimpleStringProperty prezime;
