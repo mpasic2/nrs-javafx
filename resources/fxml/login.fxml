@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.LoginController">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
@@ -75,7 +75,7 @@
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
                         </PasswordField>
-                        <Button fx:id="loginAdmin" mnemonicParsing="false" onAction="#loginAdminAction" prefWidth="70.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Button fx:id="loginAdmin" mnemonicParsing="false" onAction="#loginAdminAction" prefHeight="32.0" prefWidth="95.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
                                 <Insets left="95.0" />
                             </GridPane.margin>
@@ -136,7 +136,7 @@
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
                         </PasswordField>
-                        <Button fx:id="loginCashier" mnemonicParsing="false" onAction="#loginCashierAction" prefWidth="70.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Button fx:id="loginCashier" mnemonicParsing="false" onAction="#loginCashierAction" prefHeight="32.0" prefWidth="96.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
                                 <Insets left="95.0" />
                             </GridPane.margin>
@@ -202,7 +202,7 @@
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
                   </PasswordField>
-                  <Button fx:id="loginWarehouseman" mnemonicParsing="false" onAction="#loginWarehousemanAction" prefWidth="70.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Button fx:id="loginWarehouseman" mnemonicParsing="false" onAction="#loginWarehousemanAction" prefHeight="32.0" prefWidth="82.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="95.0" />
                      </GridPane.margin>

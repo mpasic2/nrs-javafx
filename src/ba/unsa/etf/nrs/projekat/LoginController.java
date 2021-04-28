@@ -1,10 +1,18 @@
 package ba.unsa.etf.nrs.projekat;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LoginController {
     public TextField adminUsername;
@@ -34,6 +42,19 @@ public class LoginController {
             alert.setHeaderText("Uspješno ste se registrovali");
             alert.setContentText("Uspješan login");
             alert.showAndWait();
+
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/managerPage.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            primaryStage.show();
+            Stage zatvori = (Stage) adminUsername.getScene().getWindow();
+            zatvori.close();
         }
 
         else{
