@@ -223,9 +223,9 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
-                <Menu mnemonicParsing="true" text="_Help">
+                <Menu mnemonicParsing="true" text="_Pomoc">
                     <items>
-                        <MenuItem mnemonicParsing="true" onAction="#aboutAction" text="_About" />
+                        <MenuItem mnemonicParsing="true" onAction="#aboutAction" text="_O nama" />
                     </items>
                 </Menu>
             </menus>

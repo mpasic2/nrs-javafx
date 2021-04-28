@@ -79,6 +79,20 @@ public class LoginController {
             alert.setHeaderText("Uspješno ste se registrovali");
             alert.setContentText("Uspješan login");
             alert.showAndWait();
+
+
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/cashierPage.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            primaryStage.show();
+            Stage zatvori = (Stage) adminUsername.getScene().getWindow();
+            zatvori.close();
         }
 
         else{
@@ -103,6 +117,20 @@ public class LoginController {
             alert.setHeaderText("Uspješno ste se registrovali");
             alert.setContentText("Uspješan login");
             alert.showAndWait();
+
+
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/warehousePage.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            primaryStage.show();
+            Stage zatvori = (Stage) adminUsername.getScene().getWindow();
+            zatvori.close();
         }
 
         else{
