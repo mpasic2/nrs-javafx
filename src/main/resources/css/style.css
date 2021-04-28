@@ -1,0 +1,14 @@
+#mainGridLogin{
+    -fx-background-image: url("/img/background.jpg");
+    -fx-font-size: 16px;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+
+
+}
+.poljeIspravno {
+    -fx-control-inner-background: greenyellow;
+}
+.poljeNijeIspravno {
+    -fx-control-inner-background: lightpink;
+}
