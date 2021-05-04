@@ -282,6 +282,7 @@
                 <Menu mnemonicParsing="true" text="_Pomoc">
                     <items>
                         <MenuItem mnemonicParsing="true" onAction="#aboutAction" text="_O nama" />
+                  <MenuItem mnemonicParsing="true" onAction="#loginHelpAction" text="Kako se prijaviti" />
                     </items>
                 </Menu>
             </menus>

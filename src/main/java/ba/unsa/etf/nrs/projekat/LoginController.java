@@ -150,8 +150,22 @@ public class LoginController {
     public void aboutAction(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informacije");
+
+        alert.setResizable(true);
+
         alert.setHeaderText("POS KASA");
-        alert.setContentText("Desktop aplikacija za administratore, kasire i skladištare");
+        alert.setContentText("Desktop aplikacija za POS kasu koja kao korisnike ima menadžere, kasire i skladištare. Cilj aplikacije je olakšati svakodnevni posao navedenim licima.");
+        alert.showAndWait();
+    }
+
+    public void loginHelpAction(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informacije");
+        alert.setResizable(true);
+
+        alert.setHeaderText("POS KASA");
+        alert.setContentText("Da bi ste pristupili aplikaciji potrebno je da se prijavite sa vašim korisničkim podacima koje ste dobili od menadžera." +
+                "Podatke upisujete u polja koja su vezana za vašu djelatnost");
         alert.showAndWait();
     }
 }
