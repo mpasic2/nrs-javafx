@@ -2,8 +2,11 @@
 
 <?import java.net.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.LoginController">
@@ -56,10 +59,16 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="adminUsername" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="adminUsername" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <GridPane.margin>
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <effect>
+                        <Reflection />
+                     </effect>
                         </TextField>
 
                         <Label text="Lozinka:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -70,15 +79,24 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="adminPassword" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <PasswordField fx:id="adminPassword" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
                         </PasswordField>
-                        <Button fx:id="loginAdmin" mnemonicParsing="false" onAction="#loginAdminAction" prefHeight="32.0" prefWidth="95.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Button fx:id="loginAdmin" mnemonicParsing="false" onAction="#loginAdminAction" opacity="0.74" prefHeight="32.0" prefWidth="95.0" styleClass="dugmeLoginBoja" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
                                 <Insets left="95.0" />
                             </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" choke="0.12" height="45.29" radius="16.072499999999998" />
+                     </effect>
                         </Button>
                     </children>
                     <GridPane.margin>
@@ -118,10 +136,13 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="cashierUsername" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="cashierUsername" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <GridPane.margin>
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
                         </TextField>
                         <Label text="Lozinka:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <GridPane.margin>
@@ -131,25 +152,41 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="cashierPassword" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <PasswordField fx:id="cashierPassword" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
                                 <Insets left="50.0" right="50.0" />
                             </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
                         </PasswordField>
-                        <Button fx:id="loginCashier" mnemonicParsing="false" onAction="#loginCashierAction" prefHeight="32.0" prefWidth="96.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Button fx:id="loginCashier" mnemonicParsing="false" onAction="#loginCashierAction" opacity="0.74" prefHeight="32.0" prefWidth="96.0" styleClass="dugmeLoginBoja" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
                                 <Insets left="95.0" />
                             </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow height="45.29" radius="16.072499999999998" />
+                     </effect>
                         </Button>
                     </children>
                     <GridPane.margin>
                         <Insets top="45.0" />
                     </GridPane.margin>
                 </GridPane>
-                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1">
+                <Separator blendMode="LIGHTEN" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets bottom="15.0" top="60.0" />
                     </GridPane.margin>
+               <effect>
+                  <DropShadow height="72.85" radius="28.275" spread="0.16" width="42.25">
+                     <color>
+                        <Color red="0.7894737124443054" green="0.7456140518188477" blue="0.7456140518188477" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </Separator>
             <GridPane layoutX="213.0" layoutY="55.0" GridPane.columnIndex="4">
                <columnConstraints>
@@ -184,10 +221,13 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="warehousemanUsername" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="warehousemanUsername" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
                   </TextField>
                   <Label text="Lozinka:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
@@ -197,31 +237,47 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="warehousemanPassword" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <PasswordField fx:id="warehousemanPassword" blendMode="DIFFERENCE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
                   </PasswordField>
-                  <Button fx:id="loginWarehouseman" mnemonicParsing="false" onAction="#loginWarehousemanAction" prefHeight="32.0" prefWidth="82.0" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Button fx:id="loginWarehouseman" mnemonicParsing="false" onAction="#loginWarehousemanAction" opacity="0.74" prefHeight="32.0" prefWidth="96.0" styleClass="dugmeLoginBoja" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="95.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow height="45.29" radius="16.072499999999998" />
+                     </effect>
                   </Button>
                </children>
                <GridPane.margin>
                   <Insets top="45.0" />
                </GridPane.margin>
             </GridPane>
-                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3">
+                <Separator blendMode="LIGHTEN" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3">
                     <GridPane.margin>
                         <Insets bottom="15.0" top="60.0" />
                     </GridPane.margin>
+               <effect>
+                  <DropShadow height="72.85" radius="28.275" spread="0.16" width="42.25">
+                     <color>
+                        <Color red="0.7894737124443054" green="0.7456140518188477" blue="0.7456140518188477" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </Separator>
             </children>
         </GridPane>
     </center>
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar blendMode="EXCLUSION" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="true" text="_Pomoc">
                     <items>

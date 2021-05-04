@@ -12,3 +12,6 @@
 .poljeNijeIspravno {
     -fx-control-inner-background: lightpink;
 }
+.dugmeLoginBoja {
+    -fx-background-color:#D2B48C;
+}
