@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -40,11 +41,8 @@ public class WarehouseManagemantController implements Initializable {
     }
 
     public void btnRemove(ActionEvent actionEvent) {
-        if(!fldQuantity.getText().equals("")) {
-            deleteProductQuantity(Integer.parseInt(fldQuantity.getText()));
-        }else {
-            deleteProduct(selectedProduct);
-        }
+
+        deleteProduct(selectedProduct);
         listProducts.refresh();
     }
 
@@ -96,4 +94,28 @@ public class WarehouseManagemantController implements Initializable {
             }
         });
     }
+
+    public void btnChangeQ(ActionEvent actionEvent) {
+        String produkt = String.valueOf(listProducts.getSelectionModel().getSelectedItem());
+        String kolicina = produkt.split(" ")[1];
+        //kolicina proizvoda              unesena kolicina
+        if(Integer.parseInt(kolicina) < Integer.parseInt(fldQuantity.getText())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greska");
+            alert.setHeaderText("Pogresni podaci");
+            alert.setContentText("Nije moguce obrisati vecu kolicinu od trenutne kolicine proizvoda");
+            alert.showAndWait();
+
+        }
+
+        else {
+            deleteProductQuantity(Integer.parseInt(fldQuantity.getText()));
+            listProducts.refresh();
+        }
+
+
+    }
+
+
+
 }

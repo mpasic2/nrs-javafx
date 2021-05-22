@@ -50,7 +50,8 @@
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#btnRemove" text="Obrisi" translateX="-80.0" />
+                        <Button mnemonicParsing="false" onAction="#btnRemove" text="Obrisi" translateX="-103.0" translateY="-5.0" />
+                  <Button mnemonicParsing="false" onAction="#btnChangeQ" text="Izmijeni" translateX="-105.0" translateY="-5.0" />
 
                     </buttons>
                     <BorderPane.margin>
