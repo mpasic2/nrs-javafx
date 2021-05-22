@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.LoginController">
+    <stylesheets>
+        <URL value="@/css/style.css" />
+    </stylesheets>
+    <center>
+        <GridPane fx:id="mainGridLogin" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" text="PRIJAVA" textFill="WHITE">
+                            <GridPane.margin>
+                                <Insets left="170.0" top="20.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Arial Bold" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label text="Korisničko ime:" textFill="WHITE" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets left="50.0" top="45.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="adminUsername" blendMode="DIFFERENCE" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                                <Insets left="50.0" right="150.0" />
+                            </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                        </TextField>
+
+                        <Label text="Lozinka:" textFill="WHITE" GridPane.rowIndex="3">
+                            <GridPane.margin>
+                                <Insets bottom="-45.0" left="50.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <PasswordField fx:id="adminPassword" blendMode="DIFFERENCE" GridPane.rowIndex="4">
+                            <GridPane.margin>
+                                <Insets left="50.0" right="150.0" />
+                            </GridPane.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                        </PasswordField>
+                        <Button fx:id="loginAdmin" defaultButton="true" mnemonicParsing="false" onAction="#loginAdminAction" opacity="0.74" prefHeight="32.0" prefWidth="95.0" styleClass="dugmeLoginBoja" text="Prijava" GridPane.rowIndex="6">
+                            <GridPane.margin>
+                                <Insets left="170.0" />
+                            </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" choke="0.12" height="45.29" radius="16.072499999999998" />
+                     </effect>
+                        </Button>
+                    </children>
+                    <GridPane.margin>
+                        <Insets top="45.0" />
+                    </GridPane.margin>
+                </GridPane>
+            </children>
+        </GridPane>
+    </center>
+    <top>
+        <MenuBar blendMode="EXCLUSION" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="true" text="_Pomoc">
+                    <items>
+                        <MenuItem mnemonicParsing="true" onAction="#aboutAction" text="_O nama" />
+                  <MenuItem mnemonicParsing="true" onAction="#loginHelpAction" text="Kako se prijaviti" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
