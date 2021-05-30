@@ -60,13 +60,14 @@ public class LoginController {
 
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/cashierPage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/fxml/newCashier.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             Stage primaryStage = new Stage();
-            primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            primaryStage.setScene(new Scene(root,850 , 600));
+            primaryStage.setResizable(false);
             primaryStage.show();
             Stage zatvori = (Stage) adminUsername.getScene().getWindow();
             zatvori.close();

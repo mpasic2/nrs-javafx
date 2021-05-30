@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.TextInputDialog;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -55,6 +56,13 @@ public class WarehouseManagemantController implements Initializable {
                 }else deleteProduct(selectedProduct);
             }
         }
+
+    }
+    private void addProductQuantity(int br){
+
+        for(Product produkt : products)
+            if(produkt.getSifra().equals(selectedProduct.getSifra()))
+                    produkt.setKolicina(produkt.getKolicina() + br);
 
     }
 
@@ -96,10 +104,17 @@ public class WarehouseManagemantController implements Initializable {
     }
 
     public void btnChangeQ(ActionEvent actionEvent) {
+        TextInputDialog txtInput = new TextInputDialog();
+        txtInput.setHeaderText("Unesite kolicinu za koju zelite \nsmanjiti trenutnu kolicinu artikla! ");
+        txtInput.showAndWait();
+
+
         String produkt = String.valueOf(listProducts.getSelectionModel().getSelectedItem());
         String kolicina = produkt.split(" ")[1];
+
+
         //kolicina proizvoda              unesena kolicina
-        if(Integer.parseInt(kolicina) < Integer.parseInt(fldQuantity.getText())){
+        if(Integer.parseInt(kolicina) < Integer.parseInt(txtInput.getEditor().getText())){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Greska");
             alert.setHeaderText("Pogresni podaci");
@@ -109,9 +124,26 @@ public class WarehouseManagemantController implements Initializable {
         }
 
         else {
-            deleteProductQuantity(Integer.parseInt(fldQuantity.getText()));
+
+            deleteProductQuantity(Integer.parseInt(txtInput.getEditor().getText()));
             listProducts.refresh();
         }
+
+
+    }
+
+    public void btnAdd(ActionEvent actionEvent) {
+        TextInputDialog txtInput = new TextInputDialog();
+        txtInput.setHeaderText("Unesite kolicinu koju zelite dodati \nna kolicinu trenutnog artikla! ");
+        txtInput.showAndWait();
+
+
+        String produkt = String.valueOf(listProducts.getSelectionModel().getSelectedItem());
+        String kolicina = produkt.split(" ")[1];
+
+        addProductQuantity(Integer.parseInt(txtInput.getEditor().getText()));
+        listProducts.refresh();
+
 
 
     }

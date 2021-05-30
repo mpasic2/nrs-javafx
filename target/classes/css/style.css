@@ -15,3 +15,7 @@
 .dugmeLoginBoja {
     -fx-background-color:#D2B48C;
 }
+.calcStyle{
+    -fx-font-size: 18pt;
+    -fx-font-family: "Segoe UI Semibold";
+}

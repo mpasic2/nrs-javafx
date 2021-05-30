@@ -13,7 +13,7 @@
           <menus>
             <Menu mnemonicParsing="false" text="File">
               <items>
-                <MenuItem mnemonicParsing="false" text="Close" />
+                <MenuItem mnemonicParsing="false" onAction="#backAction" text="Close" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
@@ -23,9 +23,9 @@
                 <MenuItem mnemonicParsing="false" text="Dodajte skladistara" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" onAction="#helpWindow" text="Pomoc">
               <items>
-                <MenuItem mnemonicParsing="false" text="About" />
+                <MenuItem mnemonicParsing="false" onAction="#helpWindow" text="About" />
               </items>
             </Menu>
           </menus>
@@ -50,13 +50,13 @@
         <ButtonBar VBox.vgrow="SOMETIMES">
           <buttons>
             <Button fx:id="btnproductManagement1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#productManagement" text="UPRAVLJANJE  PROIZVODIMA" textAlignment="CENTER" translateX="-80.0" wrapText="true" />
-            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" text="UPRAVLJANJE AKCIJAMA" onAction="#actionManagement" textAlignment="CENTER" translateX="-60.0" wrapText="true" />
+            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#actionManagement" text="UPRAVLJANJE AKCIJAMA" textAlignment="CENTER" translateX="-60.0" wrapText="true" />
           </buttons>
         </ButtonBar>
         <ButtonBar VBox.vgrow="SOMETIMES">
           <buttons>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#userManagement" text="UPRAVLJANJE KORISNICIMA" textAlignment="CENTER" translateX="-90.0" wrapText="true" />
-            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" text="KREIRANJE IZVJEŠTAJA" onAction="#generateRecord" textAlignment="CENTER" translateX="-70.0" wrapText="true" />
+            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#generateRecord" text="KREIRANJE IZVJEŠTAJA" textAlignment="CENTER" translateX="-70.0" wrapText="true" />
           </buttons>
         </ButtonBar>
       </children>

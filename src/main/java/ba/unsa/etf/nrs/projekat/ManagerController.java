@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -66,6 +67,32 @@ public class ManagerController {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/generateRecord.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
+        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
+        zatvori.close();
+    }
+
+    public void helpWindow(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informacije");
+
+        alert.setResizable(true);
+
+        alert.setHeaderText("POS KASA");
+        alert.setContentText("Desktop aplikacija za POS kasu koja kao korisnike ima menadžere, kasire i skladištare. Cilj aplikacije je olakšati svakodnevni posao navedenim licima.");
+        alert.showAndWait();
+    }
+
+    public void backAction(ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/managerPage.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

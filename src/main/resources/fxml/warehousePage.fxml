@@ -52,6 +52,7 @@
                     <buttons>
                         <Button mnemonicParsing="false" onAction="#btnRemove" text="Obrisi" translateX="-103.0" translateY="-5.0" />
                   <Button mnemonicParsing="false" onAction="#btnChangeQ" text="Izmijeni" translateX="-105.0" translateY="-5.0" />
+                        <Button mnemonicParsing="false" onAction="#btnAdd" text="Dodaj" translateX="-105.0" translateY="-5.0" />
 
                     </buttons>
                     <BorderPane.margin>
