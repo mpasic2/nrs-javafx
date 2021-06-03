@@ -28,7 +28,7 @@ public class LoginController {
     String warehousemanPass = "skladistar";
 
 
-    public void loginAdminAction(ActionEvent actionEvent) {
+    public void loginAdminAction(ActionEvent actionEvent) throws IOException {
 
         if((adminUsername.getText().equals(adminName) && adminPassword.getText().equals(adminPass))){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -58,15 +58,14 @@ public class LoginController {
             alert.setContentText("Uspješan login");
             alert.showAndWait();
 
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/newCashier.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             Stage primaryStage = new Stage();
-            primaryStage.setScene(new Scene(root,850 , 600));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newCashier.fxml"));
+            NewCashierController ctrl = new NewCashierController();
+            loader.setController(ctrl);
+            Parent root = loader.load();
+            primaryStage.setTitle("Kasir");
+            primaryStage.setScene(new Scene(root, 850, 600));
             primaryStage.setResizable(false);
             primaryStage.show();
             Stage zatvori = (Stage) adminUsername.getScene().getWindow();

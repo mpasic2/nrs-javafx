@@ -30,7 +30,7 @@
             </Menu>
           </menus>
         </MenuBar>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="600.0" text="DOBRODOŠLI!" textAlignment="CENTER">
+        <Label fx:id="idZaDobrodosli" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="600.0" text="DOBRODOŠLI!" textAlignment="CENTER">
           <font>
             <Font name="Arial Bold" size="18.0" />
           </font>

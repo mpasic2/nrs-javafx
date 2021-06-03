@@ -24,12 +24,12 @@ public class CashierControllerTest {
 
     @Test
     void testSetiGetProduct(){
-        Product proizvod = new Product("12345",0);
+        Product proizvod = new Product("Jabuke",20,2,1,0,"123456789");
         proizvod.setSifra("nova_sifra");
         assertEquals("nova_sifra",proizvod.getSifra());
         proizvod.setKolicina(500);
         assertEquals(500,proizvod.getKolicina());
-        assertEquals("nova_sifra 500", proizvod.toString());
+        assertEquals("Jabuke  nova_sifra  500", proizvod.toString());
     }
 
 

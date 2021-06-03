@@ -1,3 +1,4 @@
+/*
 package ba.unsa.etf.nrs.projekat;
 
 import javafx.beans.value.ChangeListener;
@@ -84,3 +85,4 @@ public class CashierController implements Initializable {
 
     }
 }
+*/

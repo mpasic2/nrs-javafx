@@ -70,15 +70,19 @@ public class WarehouseManagemantController implements Initializable {
         products.removeIf(produkt::equals);
     }
     public void napuni(){
-        this.products.add(new Product("123",20));
-        this.products.add(new Product("121",50));
-        this.products.add(new Product("000", 10));
-        this.products.add(new Product("555",40));
+        this.products.add(new Product("Jabuke",20,2,1,0,"123456789"));
+        this.products.add(new Product("Kruske",50,2,1,0,"123456789"));
+        this.products.add(new Product("Banane", 10,2,1,0,"123456789"));
+        this.products.add(new Product("Kasike",40,2,1,0,"123456789"));
+        this.products.add(new Product("Ubrusi",40,2,1,0,"123456789"));
+        this.products.add(new Product("Laptop",40,2,1,0,"123456789"));
+        this.products.add(new Product("Parfem",40,2,1,0,"123456789"));
+        this.products.add(new Product("Knjiga",40,2,1,0,"123456789"));
         //selectedProduct.set(null);
     }
 
     public void addProduct(String a, int b){
-       int temp=0;
+       /*int temp=0;
         for(Product produkt : products){
             if(produkt.getSifra().equals(a)){
                 produkt.setKolicina(produkt.getKolicina()+b);
@@ -86,7 +90,7 @@ public class WarehouseManagemantController implements Initializable {
             }
         }
        if(temp!=1)
-        products.add(new Product(a,b));
+        products.add(new Product(a,b));*/
     }
 
     @Override
