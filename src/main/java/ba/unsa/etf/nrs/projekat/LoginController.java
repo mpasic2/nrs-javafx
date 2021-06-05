@@ -61,7 +61,7 @@ public class LoginController {
 
             Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newCashier.fxml"));
-            NewCashierController ctrl = new NewCashierController();
+            CashierController ctrl = new CashierController();
             loader.setController(ctrl);
             Parent root = loader.load();
             primaryStage.setTitle("Kasir");

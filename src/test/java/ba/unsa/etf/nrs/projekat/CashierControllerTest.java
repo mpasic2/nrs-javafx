@@ -1,9 +1,5 @@
 package ba.unsa.etf.nrs.projekat;
 
-import ba.unsa.etf.nrs.projekat.Korisnik;
-import ba.unsa.etf.nrs.projekat.Product;
-import ba.unsa.etf.nrs.projekat.Uposlenik;
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -15,20 +11,21 @@ public class CashierControllerTest {
 
     @Test
     void testSetiGetLozinkaKorisnik(){
-        Korisnik korisnik = new Korisnik("korisnik1","");
-        korisnik.setLozinka("lozinka");
-        korisnik.setKorisnickoIme("novi");
-        assertEquals("novi",korisnik.getKorisnickoIme());
-        assertEquals("lozinka",korisnik.getLozinka());
+        User korisnik = new User("korisnik1","");
+        korisnik.setPassword("lozinka");
+        korisnik.setUsername("novi");
+        assertEquals("novi",korisnik.getUsername());
+        assertEquals("lozinka",korisnik.getPassword());
     }
 
     @Test
     void testSetiGetProduct(){
-        Product proizvod = new Product("Jabuke",20,2,1,0,"123456789");
-        proizvod.setSifra("nova_sifra");
-        assertEquals("nova_sifra",proizvod.getSifra());
-        proizvod.setKolicina(500);
-        assertEquals(500,proizvod.getKolicina());
+        Category category = new Category(1,"category");
+        Product proizvod = new Product("Jabuke",20,2,1,"0",category);
+        proizvod.setBarCode("nova_sifra");
+        assertEquals("nova_sifra",proizvod.getBarCode());
+        proizvod.setQuantity(500);
+        assertEquals(500,proizvod.getQuantity());
         assertEquals("Jabuke  nova_sifra  500", proizvod.toString());
     }
 

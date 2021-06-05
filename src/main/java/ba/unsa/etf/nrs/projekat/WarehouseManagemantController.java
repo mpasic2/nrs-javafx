@@ -5,22 +5,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.TextInputDialog;
-
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class WarehouseManagemantController implements Initializable {
 
@@ -50,9 +42,9 @@ public class WarehouseManagemantController implements Initializable {
     private void deleteProductQuantity(int br){
 
         for(Product produkt : products){
-            if(produkt.getSifra().equals(selectedProduct.getSifra())){
-                if(produkt.getKolicina()>1 && br<produkt.getKolicina()) {
-                    produkt.setKolicina(produkt.getKolicina() - br);
+            if(produkt.getBarCode().equals(selectedProduct.getBarCode())){
+                if(produkt.getQuantity()>1 && br<produkt.getQuantity()) {
+                    produkt.setQuantity(produkt.getQuantity() - br);
                 }else deleteProduct(selectedProduct);
             }
         }
@@ -61,8 +53,8 @@ public class WarehouseManagemantController implements Initializable {
     private void addProductQuantity(int br){
 
         for(Product produkt : products)
-            if(produkt.getSifra().equals(selectedProduct.getSifra()))
-                    produkt.setKolicina(produkt.getKolicina() + br);
+            if(produkt.getBarCode().equals(selectedProduct.getBarCode()))
+                    produkt.setQuantity(produkt.getQuantity() + br);
 
     }
 
@@ -70,14 +62,15 @@ public class WarehouseManagemantController implements Initializable {
         products.removeIf(produkt::equals);
     }
     public void napuni(){
-        this.products.add(new Product("Jabuke",20,2,1,0,"123456789"));
-        this.products.add(new Product("Kruske",50,2,1,0,"123456789"));
-        this.products.add(new Product("Banane", 10,2,1,0,"123456789"));
-        this.products.add(new Product("Kasike",40,2,1,0,"123456789"));
-        this.products.add(new Product("Ubrusi",40,2,1,0,"123456789"));
-        this.products.add(new Product("Laptop",40,2,1,0,"123456789"));
-        this.products.add(new Product("Parfem",40,2,1,0,"123456789"));
-        this.products.add(new Product("Knjiga",40,2,1,0,"123456789"));
+        Category category = new Category(1,"categoriy");
+        this.products.add(new Product("Jabuke",20,2,1,"0",category));
+        this.products.add(new Product("Kruske",50,2,1,"0",category));
+        this.products.add(new Product("Banane", 10,2,1,"0",category));
+        this.products.add(new Product("Kasike",40,2,1,"0",category));
+        this.products.add(new Product("Ubrusi",40,2,1,"0",category));
+        this.products.add(new Product("Laptop",40,2,1,"0",category));
+        this.products.add(new Product("Parfem",40,2,1,"0",category));
+        this.products.add(new Product("Knjiga",40,2,1,"0",category));
         //selectedProduct.set(null);
     }
 

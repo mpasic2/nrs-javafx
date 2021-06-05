@@ -1,108 +1,122 @@
 package ba.unsa.etf.nrs.projekat;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class Product {
 
-    private SimpleStringProperty naziv;
-    private SimpleIntegerProperty kolicina;
-    private SimpleIntegerProperty cijena;
-    private SimpleIntegerProperty kategorija;
-    private SimpleIntegerProperty popust;
-    private SimpleStringProperty sifra;
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty name;
+    private SimpleIntegerProperty quantity;
+    private SimpleIntegerProperty price;
+    private SimpleDoubleProperty discount;
+    private SimpleStringProperty barCode;
+    private Category category;
 
     public Product() {
     }
-
-    public Product(String naziv, int kolicina, int cijena, int kategorija, int popust, String sifra) {
-        this.naziv = new SimpleStringProperty(naziv);
-        this.kolicina = new SimpleIntegerProperty(kolicina);
-        this.cijena = new SimpleIntegerProperty(cijena);
-        this.kategorija = new SimpleIntegerProperty(kategorija);
-        this.popust = new SimpleIntegerProperty(popust);
-        this.sifra = new SimpleStringProperty(sifra);
+    public Product(String name, int quantity, int price, double discount, String barCode, Category category) {
+        this.name = new SimpleStringProperty(name);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.price = new SimpleIntegerProperty(price);
+        this.discount = new SimpleDoubleProperty(discount);
+        this.barCode = new SimpleStringProperty(barCode);
+        this.category = category;
+    }
+    public Product(int id, String name, int quantity, int price, double discount, String barCode, Category category) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.price = new SimpleIntegerProperty(price);
+        this.discount = new SimpleDoubleProperty(discount);
+        this.barCode = new SimpleStringProperty(barCode);
+        this.category = category;
     }
 
-
-    public String getNaziv() {
-        return naziv.get();
+    public int getId() {
+        return id.get();
     }
 
-    public SimpleStringProperty nazivProperty() {
-        return naziv;
+    public SimpleIntegerProperty idProperty() {
+        return id;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv.set(naziv);
+    public void setId(int id) {
+        this.id.set(id);
     }
 
-    public int getCijena() {
-        return cijena.get();
+    public Category getCategory() {
+        return category;
     }
 
-    public SimpleIntegerProperty cijenaProperty() {
-        return cijena;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public void setCijena(int cijena) {
-        this.cijena.set(cijena);
+    public String getName() {
+        return name.get();
     }
 
-    public int getKategorija() {
-        return kategorija.get();
+    public SimpleStringProperty nameProperty() {
+        return name;
     }
 
-    public SimpleIntegerProperty kategorijaProperty() {
-        return kategorija;
+    public void setName(String name) {
+        this.name.set(name);
     }
 
-    public void setKategorija(int kategorija) {
-        this.kategorija.set(kategorija);
+    public int getPrice() {
+        return price.get();
     }
 
-    public int getPopust() {
-        return popust.get();
+    public SimpleIntegerProperty priceProperty() {
+        return price;
     }
 
-    public SimpleIntegerProperty popustProperty() {
-        return popust;
+    public void setPrice(int price) {
+        this.price.set(price);
     }
 
-    public void setPopust(int popust) {
-        this.popust.set(popust);
+    public double getDiscount() {
+        return discount.get();
     }
 
-    public String getSifra() {
-        return sifra.get();
+    public SimpleDoubleProperty discountProperty() {
+        return discount;
     }
 
-    public int getKolicina() {
-        return kolicina.get();
+    public void setDiscount(int discount) {
+        this.discount.set(discount);
     }
 
-    public SimpleIntegerProperty kolicinaProperty() {
-        return kolicina;
+    public String getBarCode() {
+        return barCode.get();
     }
 
-    public void setKolicina(int kolicina) {
-        this.kolicina.set(kolicina);
+    public int getQuantity() {
+        return quantity.get();
     }
 
-    public SimpleStringProperty sifraProperty() {
-        return sifra;
+    public SimpleIntegerProperty quantityProperty() {
+        return quantity;
     }
 
-    public void setSifra(String sifra) {
-        this.sifra.set(sifra);
+    public void setQuantity(int quantity) {
+        this.quantity.set(quantity);
     }
 
+    public SimpleStringProperty barCodeProperty() {
+        return barCode;
+    }
 
+    public void setBarCode(String barCode) {
+        this.barCode.set(barCode);
+    }
 
 
     @Override
     public String toString() {
-        return naziv.get() +"  "+sifra.get()+"  "+kolicina.get();
+        return name.get() +"  "+ barCode.get()+"  "+ quantity.get();
     }
 }

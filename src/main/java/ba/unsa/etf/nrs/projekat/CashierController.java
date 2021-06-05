@@ -1,88 +1,168 @@
-/*
 package ba.unsa.etf.nrs.projekat;
 
+import com.github.sarxos.webcam.Webcam;
+import com.google.zxing.*;
+import com.google.zxing.common.HybridBinarizer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import com.google.zxing.Result;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import javafx.stage.Stage;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class CashierController implements Initializable {
-    public TextField fldBarCode;
-    public TextField fldQuantity;
-    public ListView listProducts;
-
     public ObservableList<Product> products = FXCollections.observableArrayList();
+    public TextField fldPriceQuant;
+    public TextField fldQuant;
+    public TextField fldSum;
+    public TextField fldTotalSum;
+    public TextField fldSearchProduct;
+    public Button btnScan;
+    public TableView tableId;
+    public TextField fldTotalPaid;
+    public TextField fldTotalReturn;
     private Product selectedProduct ;
+    public Label lblUsername;
+
+    public ListView listOfProducts;//lista
+
+
+
+
+    void initData(String cashier) {
+        lblUsername.setText(cashier);
+    }
+
 
     public void napuni(){
-        this.products.add(new Product("123",20));
-        this.products.add(new Product("121",50));
-        this.products.add(new Product("000", 10));
-        this.products.add(new Product("555",40));
+        Category category = new Category(1,"categoriy");
+        this.products.add(new Product("Jabuke",20,2,1,"0",category));
+        this.products.add(new Product("Kruske",50,2,1,"0",category));
+        this.products.add(new Product("Banane", 10,2,1,"0",category));
+        this.products.add(new Product("Kasike",40,2,1,"0",category));
+        this.products.add(new Product("Ubrusi",40,2,1,"0",category));
+        this.products.add(new Product("Laptop",40,2,1,"0",category));
+        this.products.add(new Product("Parfem",40,2,1,"0",category));
+        this.products.add(new Product("Knjiga",40,2,1,"0",category));
         //selectedProduct.set(null);
     }
 
-
-
-    public void btnAddProduct(ActionEvent actionEvent) {
-
-
-
-        if(fldBarCode.getText()!="" && fldQuantity.getText()!=""){
-            //products.add(new Product(fldBarCode.getText(),Integer.parseInt(fldQuantity.getText())));
-            addProduct(fldBarCode.getText(),Integer.parseInt(fldQuantity.getText()));
-        }
-        listProducts.refresh();
+    private boolean searchFindsOrder(Product order, String searchText){
+        return (order.getBarCode().toLowerCase().contains(searchText.toLowerCase()));
+                //Integer.valueOf(order.getId()).toString().equals(searchText.toLowerCase());
     }
 
-    public void addProduct(String a, int b){
-        products.add(new Product(a,b));
-    }
-
-    public void btnRemove(ActionEvent actionEvent) {
-
-        deleteProduct(selectedProduct);
-        listProducts.refresh();
-    }
-
-    private void deleteProduct(Product produkt){
-        products.removeIf(produkt::equals);
-    }
-
-    private Product getProduct(int br){
-        return products.get(br - 1);
-    }
-
-    public void btnCheckout(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Racun");
-        alert.setHeaderText("Racun kreiran");
-        alert.setContentText("Uspješno kreiran račun");
-        alert.showAndWait();
+    private Predicate<Product> createPredicate(String searchText){
+        return order -> {
+            if (searchText == null || searchText.isEmpty()) return true;
+            return searchFindsOrder(order, searchText);
+        };
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       // napuni();
+        napuni();
+        fldSearchProduct.textProperty().addListener((observable, oldValue, newValue) -> {
+            FilteredList<Product> filteredData = new FilteredList<>(FXCollections.observableList(products));
+            filteredData.setPredicate(createPredicate(newValue));
+            listOfProducts.setItems(filteredData);
 
-        listProducts.setItems(products);
+        });
 
-        listProducts.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        listOfProducts.setItems(products);
+
+        listOfProducts.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selectedProduct = (Product) newValue;
+                fldPriceQuant.setText(String.valueOf(selectedProduct.getPrice()));//nekako dobacit cijenu artikla po komadu
+                fldQuant.setText("1");
+                double suma = Integer.parseInt(fldPriceQuant.getText())*Integer.parseInt(fldQuant.getText());
+                fldSum.setText(String.valueOf(suma));
             }
         });
 
     }
+
+
+
+    public void scanAction(ActionEvent actionEvent) throws IOException {
+        Webcam webcam = Webcam.getDefault(); // non-default (e.g. USB) webcam can be used too
+        webcam.open();
+
+        Result result = null;
+        BufferedImage image = null;
+        //ImageIO.write(webcam.getImage(), "PNG", new File("QR.png"));
+        if (webcam.isOpen()) {
+            image = webcam.getImage();
+
+
+            LuminanceSource source = new BufferedImageLuminanceSource(image);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+            try {
+                result = new MultiFormatReader().decode(bitmap);
+            } catch (NotFoundException e) {
+                // fall thru, it means there is no QR code in image
+            }
+        }
+
+        if (result != null) {
+            System.out.println("QR code data is: " + result.getText());
+        }
+    }
+
+    public void addProductAction(ActionEvent actionEvent) {
+    }
+
+    public void deleteProductAction(ActionEvent actionEvent) {
+    }
+
+    public void createBill(ActionEvent actionEvent) {
+    }
+
+    public void aboutProduct(ActionEvent actionEvent) {
+    }
+
+    public void logoutAction(ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
+        Stage zatvori = (Stage) fldPriceQuant.getScene().getWindow();
+        zatvori.close();
+    }
+
+    public void printAction(ActionEvent actionEvent) {
+    }
+
+    public void doneAction(ActionEvent actionEvent) {
+    }
+
+
 }
-*/
