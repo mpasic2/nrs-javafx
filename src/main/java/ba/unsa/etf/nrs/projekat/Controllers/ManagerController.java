@@ -1,4 +1,4 @@
-package ba.unsa.etf.nrs.projekat;
+package ba.unsa.etf.nrs.projekat.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

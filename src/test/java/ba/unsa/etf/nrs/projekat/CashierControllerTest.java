@@ -1,5 +1,9 @@
 package ba.unsa.etf.nrs.projekat;
 
+import ba.unsa.etf.nrs.projekat.Classes.Category;
+import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.Classes.Employee;
+import ba.unsa.etf.nrs.projekat.Classes.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -32,7 +36,7 @@ public class CashierControllerTest {
 
     @Test
     void testSetiGetUposlenik(){
-        Uposlenik uposelnik = new Uposlenik("","","","","","", LocalDate.now(), Uposlenik.Uloga.Administrator);
+        Employee uposelnik = new Employee("","","","","","", LocalDate.now(), Employee.Uloga.Administrator);
         uposelnik.setIme("Uposleni");
         uposelnik.setPrezime("Uposlinecki");
         uposelnik.setJMBG("123456789");
@@ -40,7 +44,7 @@ public class CashierControllerTest {
         uposelnik.setEmail("up1@gmail.com");
         uposelnik.setBrojMobitela("062062062");
         uposelnik.setDatumZaposlenja(LocalDate.of(2018, 11, 17));
-        Uposlenik uposelnik2 = new Uposlenik("Uposleni","Uposlinecki","123456789","Bihac bb","062062062","up1@gmail.com", LocalDate.of(2018, 11, 17), Uposlenik.Uloga.Administrator);
+        Employee uposelnik2 = new Employee("Uposleni","Uposlinecki","123456789","Bihac bb","062062062","up1@gmail.com", LocalDate.of(2018, 11, 17), Employee.Uloga.Administrator);
         boolean tacno=false;
         if(uposelnik.getIme().equals(uposelnik2.getIme())) tacno=true;
         if(uposelnik.getPrezime().equals(uposelnik2.getPrezime())) tacno=true;

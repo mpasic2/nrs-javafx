@@ -1,5 +1,6 @@
-package ba.unsa.etf.nrs.projekat;
+package ba.unsa.etf.nrs.projekat.Controllers;
 
+import ba.unsa.etf.nrs.projekat.Controllers.CashierController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

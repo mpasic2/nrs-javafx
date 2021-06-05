@@ -1,5 +1,7 @@
-package ba.unsa.etf.nrs.projekat;
+package ba.unsa.etf.nrs.projekat.Controllers;
 
+import ba.unsa.etf.nrs.projekat.Classes.Category;
+import ba.unsa.etf.nrs.projekat.Classes.Product;
 import com.github.sarxos.webcam.Webcam;
 import com.google.zxing.*;
 import com.google.zxing.common.HybridBinarizer;

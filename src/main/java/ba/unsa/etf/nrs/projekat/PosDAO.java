@@ -1,5 +1,8 @@
 package ba.unsa.etf.nrs.projekat;
 
+import ba.unsa.etf.nrs.projekat.Classes.Category;
+import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.Classes.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,7 +11,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -48,22 +50,22 @@ public class PosDAO extends BaseDAO{
 
 
     private PosDAO() {
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            int port = 1000;
-            String dbUsername = "root";
-            String dbPassword = "root";
-            String sqlDialect = "mysql";
-            String host = "localhost";
-            String dbName = "bazakasa";
-            String useSSL = "false";
-
-            String url = "jdbc:" + sqlDialect + "://" + host + ":" + port + "/" + dbName + "?useSSL=" + useSSL;
-            conn = DriverManager.getConnection(url, dbUsername, dbPassword);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            int port = 1000;
+//            String dbUsername = "root";
+//            String dbPassword = "root";
+//            String sqlDialect = "mysql";
+//            String host = "localhost";
+//            String dbName = "bazakasa";
+//            String useSSL = "false";
+//
+//            String url = "jdbc:" + sqlDialect + "://" + host + ":" + port + "/" + dbName + "?useSSL=" + useSSL;
+//            conn = DriverManager.getConnection(url, dbUsername, dbPassword);
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

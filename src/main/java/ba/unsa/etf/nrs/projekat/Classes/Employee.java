@@ -1,4 +1,4 @@
-package ba.unsa.etf.nrs.projekat;
+package ba.unsa.etf.nrs.projekat.Classes;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Uposlenik {
+public class Employee {
 
     public enum Uloga{Administrator, Skladistar, Kasir}
 
@@ -20,7 +20,7 @@ public class Uposlenik {
     SimpleObjectProperty<LocalDate> datumZaposlenja;
     SimpleObjectProperty<Uloga> uloga;
 
-    public Uposlenik(String ime, String prezime, String JMBG, String adresa, String brojMobitela, String email, LocalDate datumZaposlenja, Uloga uloga) {
+    public Employee(String ime, String prezime, String JMBG, String adresa, String brojMobitela, String email, LocalDate datumZaposlenja, Uloga uloga) {
         this.ime = new SimpleStringProperty(ime);
         this.prezime = new SimpleStringProperty(prezime);
         this.JMBG = new SimpleStringProperty(JMBG);

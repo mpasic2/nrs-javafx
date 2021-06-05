@@ -1,4 +1,4 @@
-package ba.unsa.etf.nrs.projekat;
+package ba.unsa.etf.nrs.projekat.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +11,10 @@ import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class ActionManagementController {
 
-    public Button btnBackAction;
+public class GenerateRecordController {
+
+    public Button btnBackReport;
 
     public void backAction(ActionEvent actionEvent) {
         Parent root = null;
@@ -26,7 +27,7 @@ public class ActionManagementController {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnBackAction.getScene().getWindow();
+        Stage zatvori = (Stage) btnBackReport.getScene().getWindow();
         zatvori.close();
     }
 }

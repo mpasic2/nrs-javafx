@@ -24,7 +24,8 @@ public class Main extends Application {
         primaryStage.setTitle("POS Kasa");
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();*/
-
+//    PosDAO posDAO = PosDAO.getInstance();
+//        System.out.printf(String.valueOf(posDAO.getUser(0).firstName));
 
 
     }
