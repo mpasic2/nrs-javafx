@@ -81,5 +81,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:11.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:11.0.1" level="project" />
     <orderEntry type="library" name="de.jensd:fontawesomefx:8.9" level="project" />
+    <orderEntry type="library" name="org.json:json:202011151" level="project" />
+    <orderEntry type="library" name="json-simple-1.1" level="project" />
   </component>
 </module>

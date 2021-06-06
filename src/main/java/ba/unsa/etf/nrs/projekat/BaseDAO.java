@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-    public abstract  class BaseDAO {
+    public abstract class BaseDAO {
         protected abstract String getBaseUri();
 
         protected URL getUrl(String uri) {

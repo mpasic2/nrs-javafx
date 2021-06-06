@@ -66,7 +66,7 @@ public class CashierController implements Initializable {
         this.products.add(new Product("Laptop",40,2,1,"0",category));
         this.products.add(new Product("Parfem",40,2,1,"0",category));
         this.products.add(new Product("Knjiga",40,2,1,"0",category));
-        //selectedProduct.set(null);
+
     }
 
     private boolean searchFindsOrder(Product order, String searchText){

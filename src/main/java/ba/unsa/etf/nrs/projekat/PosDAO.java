@@ -1,22 +1,31 @@
 package ba.unsa.etf.nrs.projekat;
 
 import ba.unsa.etf.nrs.projekat.Classes.Category;
+import ba.unsa.etf.nrs.projekat.Classes.Employee;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.util.converter.LocalDateStringConverter;
+import jdk.nashorn.internal.parser.Parser;
 import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class PosDAO extends BaseDAO{
     private static Connection conn;
@@ -49,200 +58,91 @@ public class PosDAO extends BaseDAO{
     }
 
 
-    private PosDAO() {
-//        try {
-//
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            int port = 1000;
-//            String dbUsername = "root";
-//            String dbPassword = "root";
-//            String sqlDialect = "mysql";
-//            String host = "localhost";
-//            String dbName = "bazakasa";
-//            String useSSL = "false";
-//
-//            String url = "jdbc:" + sqlDialect + "://" + host + ":" + port + "/" + dbName + "?useSSL=" + useSSL;
-//            conn = DriverManager.getConnection(url, dbUsername, dbPassword);
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//        }
-    }
 
     @Override
     protected String getBaseUri() {
         return bazaurl;
     }
 
-    private JSONArray getJsonArrayFromUrl(URL url) {
-        JSONArray jsonArray;
-        String json = this.getReaderJsonConnectionData(url);
-        if (json == null) return null;
-        jsonArray = new JSONArray(json);
-        return jsonArray;
-    }
-
-    private JSONObject getJsonObjectFromUrl(URL url) {
-        JSONObject jsonArray;
-        String json = this.getReaderJsonConnectionData(url);
-        if (json == null) return null;
-        jsonArray = new JSONObject(json);
-        return jsonArray;
-    }
-
-    private JSONObject getJsonObjectData(String path) {
-        URL url = this.getUrl(path);
-
-        return this.getJsonObjectFromUrl(url);
-    }
 
 
-    private JSONArray getJsonArrayData(String path) {
-        URL url = this.getUrl(path);
+    public String dajUsere() throws IOException, ParseException {
 
-        return this.getJsonArrayFromUrl(url);
-    }
-
-
-    private HttpURLConnection getHttpConnection(URL url, String method) throws IOException {
-        HttpURLConnection con = this.getBaseHttpConnection(url, method);
-        String basicAuth = "Bearer " + this.authService.getToken();
-        con.setRequestProperty ("Authorization", basicAuth);
-
-        return con;
-    }
-
-    private String getReaderJsonConnectionData(URL url) {
-        try {
-            HttpURLConnection con = this.getHttpConnection(url, "GET");
-            InputStream in = con.getInputStream();
-            return this.getReaderJson(in);
-        } catch (IOException e) {
-            e.printStackTrace();
+        String adresa = "http://localhost:1000/GetUsers";
+        URL url = new URL(adresa);
+        Scanner sc = new Scanner(url.openStream());
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()) {
+            sb.append(sc.next());
         }
-        return null;
-    }
+        String res = sb.toString();
 
-    public ArrayList<Product> getProducts() {
-        ArrayList<Product> result = new ArrayList<>();
-        JSONArray jsonArray = getJsonArrayData("products");
-        if (jsonArray == null) return null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            Category category = getCategory(json.getInt("categoryId"));
-            Product product = new Product(json.getInt("id"), json.getString("name"), json.getInt("quantity"),json.getInt("price"),
-                                     json.getDouble("discount"),json.getString("barCode"), category);
-            result.add(product);
+        String[] savRES = res.split("},");
+        ObservableList<User> useri = FXCollections.observableArrayList();
+        for(int i=0;i<savRES.length;i++){
+            int id = Integer.parseInt(savRES[i].split(",")[0].split(":")[1].replaceAll("\"",""));
+            String name =  savRES[i].split(",")[1].split(":")[1].replaceAll("\"","");
+            String lastname = savRES[i].split(",")[2].split(":")[1].replaceAll("\"","");
+            String username = savRES[i].split(",")[3].split(":")[1].replaceAll("\"","");
+            String pass =  savRES[i].split(",")[4].split(":")[1].replaceAll("\"","");
+            String email = savRES[i].split(",")[5].split(":")[1].replaceAll("\"","");
+            String phone = savRES[i].split(",")[6].split(":")[1].replaceAll("\"","");
+            String address = savRES[i].split(",")[7].split(":")[1].replaceAll("\"","");
+            String birthdate = savRES[i].split(",")[8].split(":")[1].replaceAll("\"","");
+            birthdate = birthdate.split("T")[0];
+
+            User usr = new User(id,name,lastname,username,pass,email,phone,address,LocalDate.parse(birthdate));
+            useri.add(usr);
         }
-        return result;
-    }
 
-    public Product getProduct(int id) {
-        Product product;
-        JSONObject json = this.getJsonObjectData("products/" + id);
-        if (json == null) return null;
-        product = new Product(json.getInt("id"), json.getString("name"), json.getInt("quantity"),json.getInt("price"),
-                json.getDouble("discount"),json.getString("barCode"), getCategory(json.getInt("categoryId")));
-        return product;
-    }
 
-    public Category getCategory(int id) {
-        Category category = null;
-        JSONObject json = this.getJsonObjectData("categories/" + id);
-        if (json == null) return null;
-        category = new Category(json.getInt("id"), json.getString("name"));
-        return category;
-    }
+            /*System.out.println("ovo je id: " + savRES[i].split(":")[1].replaceAll("\"",""));
+            System.out.println("ovo je name: "+ savRES[i+1].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je lastnae: "+ savRES[i+2].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je username: "+ savRES[i+3].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je password: "+ savRES[i+4].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je email: "+ savRES[i+5].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je phone: "+ savRES[i+6].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je addnress: "+ savRES[i+7].split(":\"")[1].replaceAll("\"",""));
+            System.out.println("ovo je birthdate: "+ savRES[i+8].split(":\"")[1].replaceAll("\"",""));*/
+            System.out.println(useri);
+        //}
 
-    public Category getCategoryByName(String name) {
-        Category category;
-        JSONObject json = this.getJsonObjectData("categoriesfor/" + name);
-        if (json == null) return null;
-        category = new Category(json.getInt("id"), json.getString("name"));
-        return category;
-    }
 
-    public List<Category> getCategories() {
-        List<Category> result = new ArrayList<>();
-        JSONArray jsonArray = getJsonArrayData("categories");
-        if (jsonArray == null) return null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            Category category = new Category(json.getInt("id"), json.getString("name"));
-            result.add(category);
-        }
-        return result;
-    }
 
-    public ArrayList<Product> getProductsForCategory(Category category) {
-        ArrayList<Product> result = new ArrayList<>();
-        JSONArray jsonArray = getJsonArrayData("productsfor/" + category.getName());
-        if (jsonArray == null) return null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            Product product = new Product(json.getInt("id"), json.getString("name"), json.getInt("quantity"),json.getInt("price"),
-                    json.getDouble("discount"),json.getString("barCode"), category);
-
-            result.add(product);
-        }
-        return result;
-    }
-
-    public ArrayList<Product> getProductsByName(String name) {
-        ArrayList<Product> result = new ArrayList<>();
-
-        JSONArray jsonArray = getJsonArrayData("products/" + name);
-        if (jsonArray == null) return null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            Product prod = getProduct(json.getInt("id"));
-            Product product = new Product(json.getInt("id"), json.getString("name"), json.getInt("quantity"),json.getInt("price"),
-                    json.getDouble("discount"),json.getString("barCode"), prod.getCategory());
-
-            result.add(product);
-        }
-        return result;
-    }
-
-    public User getUser(int id) {
-        JSONArray jsonArray = getJsonArrayData("users/" + id);
-        if (jsonArray == null) return null;
-        User user = null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            LocalDate date = LocalDate.parse(json.getString("birthDate"), dateFormatter);
-            user = new User(json.getInt("id"), json.getString("firstName"), json.getString("lastName"), json.getString("username"),
-                    json.getString("password"), json.getString("email"), json.getString("phone"), json.getString("address"),
-                    date);
-        }
-        return user;
-    }
-
-    public User getUserByUsername(String username) {
-        JSONObject json = this.getJsonObjectData("usersfor/" + username);
-        if (json == null) return null;
-        User user;
-        LocalDate date = LocalDate.parse(json.getString("birthDate"), dateFormatter);
-        user = new User(json.getInt("id"), json.getString("firstName"), json.getString("lastName"), json.getString("username"),
-                json.getString("password"), json.getString("email"), json.getString("phone"), json.getString("address"),
-                date);
-        return user;
+        return res;
     }
 
 
-    public List<User> getUsers() {
-        List<User> result = new ArrayList<>();
-        JSONArray jsonArray = getJsonArrayData("users");
-        if (jsonArray == null) return null;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            LocalDate date = LocalDate.parse(json.getString("birthDate"), dateFormatter);
-            User  user = new User(json.getInt("id"), json.getString("firstName"), json.getString("lastName"), json.getString("username"),
-                    json.getString("password"), json.getString("email"), json.getString("phone"), json.getString("address"),
-                    date);
-            result.add(user);
-        }
-        return result;
+    public String dajZaposlene() throws IOException {
+
+        String adresa = "http://localhost:1000/GetEmployees";
+        URL url = new URL(adresa);
+        Scanner sc = new Scanner(url.openStream());
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext())
+            sb.append(sc.next());
+        String res = sb.toString();
+
+
+        System.out.println(res);
+        String[] savRES = res.split("},");
+
+        /*System.out.println("ovo je id: " + savRES[0].split(":")[1].replaceAll("\"",""));
+        System.out.println("ovo je name: "+ savRES[1].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je lastnae: "+ savRES[2].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je username: "+ savRES[3].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je password: "+ savRES[4].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je email: "+ savRES[5].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je phone: "+ savRES[6].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je addnress: "+ savRES[7].split(":\"")[1].replaceAll("\"",""));
+        System.out.println("ovo je birthdate: "+ savRES[8].split(":\"")[1].replaceAll("\"",""));*/
+
+        return res;
     }
+
+
+
 
 
 

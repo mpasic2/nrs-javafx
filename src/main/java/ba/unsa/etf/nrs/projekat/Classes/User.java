@@ -143,4 +143,12 @@ public class User {
     public void setPassword(String password) {
         this.password.set(password);
     }
+
+    @Override
+    public String toString() {
+        return  "firstName=" + firstName.getValue() +
+                ", lastName=" + lastName.getValue() +
+                ", email=" + email.getValue() +
+                ", birthDate=" + birthDate.getValue() + "\n";
+    }
 }
