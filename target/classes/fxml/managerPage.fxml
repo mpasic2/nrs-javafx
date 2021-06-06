@@ -3,63 +3,84 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.Controllers.ManagerController">
-  <top>
-    <VBox BorderPane.alignment="CENTER">
-      <children>
-        <MenuBar>
-          <menus>
-            <Menu mnemonicParsing="false" text="File">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#backAction" text="Close" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Dodajte menadzera" />
-                <MenuItem mnemonicParsing="false" text="Dodajte kasira" />
-                <MenuItem mnemonicParsing="false" text="Dodajte skladistara" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" onAction="#helpWindow" text="Pomoc">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#helpWindow" text="About" />
-              </items>
-            </Menu>
-          </menus>
-        </MenuBar>
-        <Label fx:id="idZaDobrodosli" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="600.0" text="DOBRODOŠLI!" textAlignment="CENTER">
-          <font>
-            <Font name="Arial Bold" size="18.0" />
-          </font>
-          <VBox.margin>
-            <Insets top="30.0" />
-          </VBox.margin>
-          <padding>
-            <Insets left="15.0" />
-          </padding>
-        </Label>
-      </children>
-    </VBox>
-  </top>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.Controllers.ManagerController">
+  <bottom>
+    <ButtonBar BorderPane.alignment="CENTER">
+      <BorderPane.margin>
+        <Insets bottom="15.0" />
+      </BorderPane.margin>
+      <buttons>
+        <Button fx:id="btnBackUser" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backAction" style="-fx-background-color: #327c85;" text="Nazad" textFill="WHITE" translateX="-316.0" />
+      </buttons>
+    </ButtonBar>
+  </bottom>
   <center>
-    <VBox BorderPane.alignment="CENTER">
+    <GridPane alignment="CENTER" hgap="10.0" layoutX="165.0" layoutY="228.0" prefHeight="320.0" prefWidth="650.0" vgap="10.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0">
+      <BorderPane.margin>
+        <Insets bottom="60.0" left="60.0" top="60.0" />
+      </BorderPane.margin>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
       <children>
-        <ButtonBar VBox.vgrow="SOMETIMES">
-          <buttons>
-            <Button fx:id="btnproductManagement1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#productManagement" text="UPRAVLJANJE  PROIZVODIMA" textAlignment="CENTER" translateX="-80.0" wrapText="true" />
-            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#actionManagement" text="UPRAVLJANJE AKCIJAMA" textAlignment="CENTER" translateX="-60.0" wrapText="true" />
-          </buttons>
-        </ButtonBar>
-        <ButtonBar VBox.vgrow="SOMETIMES">
-          <buttons>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#userManagement" text="UPRAVLJANJE KORISNICIMA" textAlignment="CENTER" translateX="-90.0" wrapText="true" />
-            <Button minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#generateRecord" text="KREIRANJE IZVJEŠTAJA" textAlignment="CENTER" translateX="-70.0" wrapText="true" />
-          </buttons>
-        </ButtonBar>
+        <Button fx:id="btnUsers" onAction="#userManagement" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/style.css" text="Upravljanje korisnicima">
+          <graphic>
+            <FontAwesomeIconView fill="#27767f" glyphName="GROUP" size="50" />
+          </graphic>
+        </Button>
+        <Button fx:id="btnProducts" onAction="#productManagement"  contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/style.css" text="Upravljanje proizvoda" GridPane.columnIndex="1">
+          <graphic>
+            <FontAwesomeIconView fill="#27767f" glyphName="EXCHANGE" size="50" />
+          </graphic>
+        </Button>
+        <Button fx:id="btnPos" onAction="#posState" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/style.css" text="Stanje kase" GridPane.columnIndex="0" GridPane.rowIndex="1">
+          <graphic>
+            <FontAwesomeIconView fill="#27767f" glyphName="INDENT" size="50" />
+          </graphic>
+        </Button>
+        <Button fx:id="btnReport" onAction="#creteReport" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/style.css" text="Kreiranje izvjestaja" GridPane.columnIndex="1" GridPane.rowIndex="1">
+          <graphic>
+            <FontAwesomeIconView fill="#27767f" glyphName="EXCHANGE" size="50" />
+          </graphic>
+        </Button>
+
+
       </children>
-    </VBox>
+    </GridPane>
   </center>
+  <top>
+    <MenuBar prefWidth="539.0" BorderPane.alignment="CENTER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Datoteke">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Zatvori" onAction="#backAction" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Uredi">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Dodaj menadžera" />
+            <MenuItem mnemonicParsing="false" text="Dodaj kasira" />
+            <MenuItem mnemonicParsing="false" text="Dodaj skladištara" />
+            <MenuItem mnemonicParsing="false" text="Obriši kasira" />
+            <MenuItem mnemonicParsing="false" text="Obriši skladištara" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Pomoc">
+          <items>
+            <MenuItem mnemonicParsing="false" text="O Aplikaciji" onAction="#helpWindow" />
+          </items>
+        </Menu>
+      </menus>
+      <BorderPane.margin>
+        <Insets />
+      </BorderPane.margin>
+    </MenuBar>
+  </top>
 </BorderPane>

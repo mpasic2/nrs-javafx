@@ -16,7 +16,31 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class ManagerController {
 
 
-    public Button btnproductManagement1;
+    public Button btnBackUser;
+    public Button btnProducts;
+    public Button btnPos;
+    public Button btnUsers;
+    public Button btnReport;
+
+
+
+    public void posState(ActionEvent actionEvent) {
+    }
+
+    public void creteReport(ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/generateRecord.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
+        Stage zatvori = (Stage) btnPos.getScene().getWindow();
+        zatvori.close();
+    }
 
 
     public void productManagement(ActionEvent actionEvent) {
@@ -30,7 +54,7 @@ public class ManagerController {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
+        Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
     }
 
@@ -45,7 +69,7 @@ public class ManagerController {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
+        Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
     }
 
@@ -60,24 +84,11 @@ public class ManagerController {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
+        Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
     }
 
-    public void generateRecord(ActionEvent actionEvent) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/generateRecord.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        primaryStage.show();
-        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
-        zatvori.close();
-    }
 
     public void helpWindow(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -93,7 +104,7 @@ public class ManagerController {
     public void backAction(ActionEvent actionEvent) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/managerPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,7 +112,7 @@ public class ManagerController {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnproductManagement1.getScene().getWindow();
+        Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
     }
 }
