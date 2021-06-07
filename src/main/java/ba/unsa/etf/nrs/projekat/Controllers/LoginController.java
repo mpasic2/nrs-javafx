@@ -25,15 +25,6 @@ public class LoginController {
     public PasswordField adminPassword;
 
 
-    String adminName = "admin";
-    String adminPass = "admin";
-
-    String cashierName = "kasir";
-    String cashierPass = "kasir";
-
-    String warehousemanName = "skladistar";
-    String warehousemanPass = "skladistar";
-
     public int checkLogin(String username, String password) throws IOException, ParseException {
         //metoda vraca -1 ako username ne postoji
         //metoda vraca 0 ako user postoji ali je sifra pogresna

@@ -76,7 +76,7 @@
                 <TableView fx:id="tableId" prefHeight="460.0">
                     <columns>
                         <TableColumn fx:id="colName" minWidth="50.0" prefWidth="170.20000612735748" text="Naziv" />
-                        <TableColumn fx:id="colPriceOnPice" minWidth="30.0" prefWidth="153.0" text="Cijena po komadu" />
+                        <TableColumn fx:id="colPriceOnPice" minWidth="30.0" prefWidth="153.0" text="Cijena po kom" />
                         <TableColumn fx:id="colQuantity" minWidth="30.0" prefWidth="70.60003662109375" text="Kolicina" />
                         <TableColumn fx:id="colSumPrice" minWidth="30.0" prefWidth="131.00006103515625" text="Ukupna cijena" />
                     </columns>
@@ -106,11 +106,14 @@
                     <image>
                         <Image url="@../img/pos-logo.PNG" />
                     </image>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
                 </ImageView>
                 <ButtonBar>
                     <buttons>
                         <Button mnemonicParsing="false" onAction="#createBill" text="Kreiraj racun" />
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#aboutProduct" text="Info o proizvodu" />
+                        <Button minWidth="105.0" mnemonicParsing="false" onAction="#aboutProduct" text="Info o proizvodu" />
                     </buttons>
                     <HBox.margin>
                         <Insets left="80.0" />
