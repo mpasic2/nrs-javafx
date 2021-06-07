@@ -1,5 +1,6 @@
 package ba.unsa.etf.nrs.projekat.Classes;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,17 +12,16 @@ public class Employee {
 
     public enum Uloga{Administrator, Skladistar, Kasir}
 
-    SimpleStringProperty ime;
-    SimpleStringProperty prezime;
-    SimpleStringProperty JMBG;
-    SimpleStringProperty adresa;
-    SimpleStringProperty brojMobitela;
-    SimpleStringProperty email;
-    SimpleObjectProperty<LocalDate> datumZaposlenja;
-    SimpleObjectProperty<Uloga> uloga;
+    SimpleIntegerProperty id;
+    SimpleIntegerProperty userId;
+    SimpleIntegerProperty managerId;
+    SimpleObjectProperty<LocalDate> hireDate;
+    SimpleStringProperty jobTitle;
+    SimpleIntegerProperty role;
 
-    public Employee(String ime, String prezime, String JMBG, String adresa, String brojMobitela, String email, LocalDate datumZaposlenja, Uloga uloga) {
-        this.ime = new SimpleStringProperty(ime);
+
+   /* public Employee(String ime, String prezime, String JMBG, String adresa, String brojMobitela, String email, LocalDate datumZaposlenja, Uloga uloga) {
+        this.ime = new SimpleIntegerPropertyProperty(ime);
         this.prezime = new SimpleStringProperty(prezime);
         this.JMBG = new SimpleStringProperty(JMBG);
         this.adresa = new SimpleStringProperty(adresa);
@@ -29,101 +29,98 @@ public class Employee {
         this.email = new SimpleStringProperty(email);
         this.datumZaposlenja = new SimpleObjectProperty<LocalDate>(datumZaposlenja);
         this.uloga = new SimpleObjectProperty<Uloga>(uloga);
+    }*/
+
+    public Employee(int id, int userId, int managerId, LocalDate hireDate, String jobTitle, int role) {
+        this.id = new SimpleIntegerProperty(id);
+        this.userId =  new SimpleIntegerProperty(userId);
+        this.managerId =  new SimpleIntegerProperty(managerId);
+        this.hireDate = new SimpleObjectProperty<LocalDate>(hireDate);
+        this.jobTitle = new SimpleStringProperty(jobTitle);
+        this.role =  new SimpleIntegerProperty(role);
     }
 
-    public String getIme() {
-        return ime.get();
+    public int getId() {
+        return id.get();
     }
 
-    public SimpleStringProperty imeProperty() {
-        return ime;
+    public SimpleIntegerProperty idProperty() {
+        return id;
     }
 
-    public void setIme(String ime) {
-        this.ime.set(ime);
+    public void setId(int id) {
+        this.id.set(id);
     }
 
-    public String getPrezime() {
-        return prezime.get();
+    public int getUserId() {
+        return userId.get();
     }
 
-    public SimpleStringProperty prezimeProperty() {
-        return prezime;
+    public SimpleIntegerProperty userIdProperty() {
+        return userId;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime.set(prezime);
+    public void setUserId(int userId) {
+        this.userId.set(userId);
     }
 
-    public String getJMBG() {
-        return JMBG.get();
+    public int getManagerId() {
+        return managerId.get();
     }
 
-    public SimpleStringProperty JMBGProperty() {
-        return JMBG;
+    public SimpleIntegerProperty managerIdProperty() {
+        return managerId;
     }
 
-    public void setJMBG(String JMBG) {
-        this.JMBG.set(JMBG);
+    public void setManagerId(int managerId) {
+        this.managerId.set(managerId);
     }
 
-    public String getAdresa() {
-        return adresa.get();
+    public LocalDate getHireDate() {
+        return hireDate.get();
     }
 
-    public SimpleStringProperty adresaProperty() {
-        return adresa;
+    public SimpleObjectProperty<LocalDate> hireDateProperty() {
+        return hireDate;
     }
 
-    public void setAdresa(String adresa) {
-        this.adresa.set(adresa);
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate.set(hireDate);
     }
 
-    public String getBrojMobitela() {
-        return brojMobitela.get();
+    public String getJobTitle() {
+        return jobTitle.get();
     }
 
-    public SimpleStringProperty brojMobitelaProperty() {
-        return brojMobitela;
+    public SimpleStringProperty jobTitleProperty() {
+        return jobTitle;
     }
 
-    public void setBrojMobitela(String brojMobitela) {
-        this.brojMobitela.set(brojMobitela);
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle.set(jobTitle);
     }
 
-    public String getEmail() {
-        return email.get();
+    public int getRole() {
+        return role.get();
     }
 
-    public SimpleStringProperty emailProperty() {
-        return email;
+    public SimpleIntegerProperty roleProperty() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email.set(email);
+    public void setRole(int role) {
+        this.role.set(role);
     }
 
-    public LocalDate getDatumZaposlenja() {
-        return datumZaposlenja.get();
-    }
-
-    public SimpleObjectProperty<LocalDate> datumZaposlenjaProperty() {
-        return datumZaposlenja;
-    }
-
-    public void setDatumZaposlenja(LocalDate datumZaposlenja) {
-        this.datumZaposlenja.set(datumZaposlenja);
-    }
-
-    public Uloga getUloga() {
-        return uloga.get();
-    }
-
-    public SimpleObjectProperty<Uloga> ulogaProperty() {
-        return uloga;
-    }
-
-    public void setUloga(Uloga uloga) {
-        this.uloga.set(uloga);
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", managerId=" + managerId +
+                ", hireDate=" + hireDate +
+                ", jobTitle=" + jobTitle +
+                ", role=" + role +
+                '}'+ "\n";
     }
 }

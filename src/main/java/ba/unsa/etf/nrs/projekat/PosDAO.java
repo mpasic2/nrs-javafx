@@ -1,29 +1,17 @@
 package ba.unsa.etf.nrs.projekat;
 
-import ba.unsa.etf.nrs.projekat.Classes.Category;
 import ba.unsa.etf.nrs.projekat.Classes.Employee;
-import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.util.converter.LocalDateStringConverter;
-import jdk.nashorn.internal.parser.Parser;
-import org.json.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -66,7 +54,7 @@ public class PosDAO extends BaseDAO{
 
 
 
-    public String dajUsere() throws IOException, ParseException {
+    public ObservableList<User> dajUsere() throws IOException, ParseException {
 
         String adresa = "http://localhost:1000/GetUsers";
         URL url = new URL(adresa);
@@ -96,49 +84,45 @@ public class PosDAO extends BaseDAO{
         }
 
 
-            /*System.out.println("ovo je id: " + savRES[i].split(":")[1].replaceAll("\"",""));
-            System.out.println("ovo je name: "+ savRES[i+1].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je lastnae: "+ savRES[i+2].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je username: "+ savRES[i+3].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je password: "+ savRES[i+4].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je email: "+ savRES[i+5].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je phone: "+ savRES[i+6].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je addnress: "+ savRES[i+7].split(":\"")[1].replaceAll("\"",""));
-            System.out.println("ovo je birthdate: "+ savRES[i+8].split(":\"")[1].replaceAll("\"",""));*/
-            System.out.println(useri);
-        //}
-
-
-
-        return res;
+        return useri;
     }
 
 
-    public String dajZaposlene() throws IOException {
+    public ObservableList<Employee> dajZaposlene() throws IOException {
 
         String adresa = "http://localhost:1000/GetEmployees";
         URL url = new URL(adresa);
         Scanner sc = new Scanner(url.openStream());
         StringBuffer sb = new StringBuffer();
-        while(sc.hasNext())
+        while(sc.hasNext()) {
             sb.append(sc.next());
+        }
         String res = sb.toString();
 
-
-        System.out.println(res);
         String[] savRES = res.split("},");
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        for(int i=0;i<savRES.length;i++){
+            int id = Integer.parseInt(savRES[i].split(",")[0].split(":")[1].replaceAll("\"",""));
+            int userId =  Integer.parseInt(savRES[i].split(",")[1].split(":")[1].replaceAll("\"",""));
+            String managerId = savRES[i].split(",")[2].split(":")[1].replaceAll("\"","");
+            String hireDate = savRES[i].split(",")[3].replaceAll("\"","");
+            String jobTitle =  savRES[i].split(",")[i].split(":")[1].replaceAll("\"","");
+            int role = Integer.parseInt(savRES[i].split(",")[5].split(":")[1].replaceAll("\"",""));
 
-        /*System.out.println("ovo je id: " + savRES[0].split(":")[1].replaceAll("\"",""));
-        System.out.println("ovo je name: "+ savRES[1].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je lastnae: "+ savRES[2].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je username: "+ savRES[3].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je password: "+ savRES[4].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je email: "+ savRES[5].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je phone: "+ savRES[6].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je addnress: "+ savRES[7].split(":\"")[1].replaceAll("\"",""));
-        System.out.println("ovo je birthdate: "+ savRES[8].split(":\"")[1].replaceAll("\"",""));*/
 
-        return res;
+            hireDate = hireDate.split(":")[1];
+            LocalDate lcd = LocalDate.parse(hireDate.split("T")[0]);
+
+
+            if(managerId != null && !managerId.equals("") && !managerId.isEmpty() && !managerId.equals("null")) hireDate=hireDate;
+            else {
+                managerId="0";
+            }
+
+            employees.add(new Employee(id,userId,Integer.parseInt(managerId),lcd,jobTitle,role));
+
+        }
+        return employees;
     }
 
 
