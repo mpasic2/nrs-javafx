@@ -64,7 +64,7 @@ public class WarehouseManagemantController implements Initializable {
         products.removeIf(produkt::equals);
     }
     public void napuni(){
-        Category category = new Category(1,"categoriy");
+        /*Category category = new Category(1,"categoriy");
         this.products.add(new Product("Jabuke",20,2,1,"0",category));
         this.products.add(new Product("Kruske",50,2,1,"0",category));
         this.products.add(new Product("Banane", 10,2,1,"0",category));
@@ -72,7 +72,7 @@ public class WarehouseManagemantController implements Initializable {
         this.products.add(new Product("Ubrusi",40,2,1,"0",category));
         this.products.add(new Product("Laptop",40,2,1,"0",category));
         this.products.add(new Product("Parfem",40,2,1,"0",category));
-        this.products.add(new Product("Knjiga",40,2,1,"0",category));
+        this.products.add(new Product("Knjiga",40,2,1,"0",category));*/
         //selectedProduct.set(null);
     }
 

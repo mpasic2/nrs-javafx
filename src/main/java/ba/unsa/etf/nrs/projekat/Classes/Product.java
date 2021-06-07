@@ -10,30 +10,36 @@ public class Product {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleIntegerProperty quantity;
-    private SimpleIntegerProperty price;
+    private SimpleDoubleProperty price;
+    private SimpleIntegerProperty category;
     private SimpleDoubleProperty discount;
     private SimpleStringProperty barCode;
-    private Category category;
 
     public Product() {
     }
-    public Product(String name, int quantity, int price, double discount, String barCode, Category category) {
-        this.name = new SimpleStringProperty(name);
-        this.quantity = new SimpleIntegerProperty(quantity);
-        this.price = new SimpleIntegerProperty(price);
-        this.discount = new SimpleDoubleProperty(discount);
-        this.barCode = new SimpleStringProperty(barCode);
-        this.category = category;
-    }
-    public Product(int id, String name, int quantity, int price, double discount, String barCode, Category category) {
+
+    public Product(int id, String name, int quantity, double price, int category, double discount, String barCode) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.quantity = new SimpleIntegerProperty(quantity);
-        this.price = new SimpleIntegerProperty(price);
+        this.category = new SimpleIntegerProperty(category);
+        this.price = new SimpleDoubleProperty(price);
         this.discount = new SimpleDoubleProperty(discount);
         this.barCode = new SimpleStringProperty(barCode);
-        this.category = category;
+
     }
+
+
+    public Product(String name, int quantity, double price, int category, double discount, String barCode) {
+        this.name = new SimpleStringProperty(name);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.category = new SimpleIntegerProperty(category);
+        this.price = new SimpleDoubleProperty(price);
+        this.discount = new SimpleDoubleProperty(discount);
+        this.barCode = new SimpleStringProperty(barCode);
+    }
+
+
 
     public int getId() {
         return id.get();
@@ -47,14 +53,6 @@ public class Product {
         this.id.set(id);
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public String getName() {
         return name.get();
     }
@@ -65,14 +63,6 @@ public class Product {
 
     public void setName(String name) {
         this.name.set(name);
-    }
-
-    public int getPrice() {
-        return price.get();
-    }
-
-    public SimpleIntegerProperty priceProperty() {
-        return price;
     }
 
     public void setPrice(int price) {
@@ -115,6 +105,33 @@ public class Product {
         this.barCode.set(barCode);
     }
 
+    public double getPrice() {
+        return price.get();
+    }
+
+    public SimpleDoubleProperty priceProperty() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price.set(price);
+    }
+
+    public int getCategory() {
+        return category.get();
+    }
+
+    public SimpleIntegerProperty categoryProperty() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category.set(category);
+    }
+
+    public void setDiscount(double discount) {
+        this.discount.set(discount);
+    }
 
     @Override
     public String toString() {

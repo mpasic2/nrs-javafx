@@ -26,7 +26,7 @@ public class Main extends Application {
         primaryStage.show();*/
 //    PosDAO posDAO = PosDAO.getInstance();
 //        System.out.printf(String.valueOf(posDAO.getUser(0).firstName));
-
+        System.out.println(PosDAO.getInstance().dajArtikle());
 
 
 

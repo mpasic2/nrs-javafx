@@ -22,7 +22,7 @@ public class CashierControllerTest {
         assertEquals("lozinka",korisnik.getPassword());
     }
 
-    @Test
+/*    @Test
     void testSetiGetProduct(){
         Category category = new Category(1,"category");
         Product proizvod = new Product("Jabuke",20,2,1,"0",category);
@@ -31,7 +31,7 @@ public class CashierControllerTest {
         proizvod.setQuantity(500);
         assertEquals(500,proizvod.getQuantity());
         assertEquals("Jabuke  nova_sifra  500", proizvod.toString());
-    }
+    }*/
 
 
 }

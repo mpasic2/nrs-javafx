@@ -1,6 +1,7 @@
 package ba.unsa.etf.nrs.projekat;
 
 import ba.unsa.etf.nrs.projekat.Classes.Employee;
+import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,6 +78,7 @@ public class PosDAO extends BaseDAO{
             String phone = savRES[i].split(",")[6].split(":")[1].replaceAll("\"","");
             String address = savRES[i].split(",")[7].split(":")[1].replaceAll("\"","");
             String birthdate = savRES[i].split(",")[8].split(":")[1].replaceAll("\"","");
+
             birthdate = birthdate.split("T")[0];
 
             User usr = new User(id,name,lastname,username,pass,email,phone,address,LocalDate.parse(birthdate));
@@ -123,6 +125,39 @@ public class PosDAO extends BaseDAO{
 
         }
         return employees;
+    }
+
+
+
+    public ObservableList<Product> dajArtikle() throws IOException {
+
+        String adresa = "http://localhost:1000/GetProducts";
+        URL url = new URL(adresa);
+        Scanner sc = new Scanner(url.openStream());
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()) {
+            sb.append(sc.next());
+        }
+        String res = sb.toString();
+
+
+        String[] savRES = res.split("},");
+
+        ObservableList<Product> products = FXCollections.observableArrayList();
+
+        for(int i=0;i<savRES.length;i++){
+            int id = Integer.parseInt(savRES[i].split(",")[0].split(":")[1].replaceAll("\"",""));
+            String name =  savRES[i].split(",")[1].split(":")[1].replaceAll("\"","");
+            int quantity = Integer.parseInt(savRES[i].split(",")[2].split(":")[1].replaceAll("\"",""));
+            double price = Double.parseDouble(savRES[i].split(",")[3].split(":")[1].replaceAll("\"",""));
+            int category =  Integer.parseInt(savRES[i].split(",")[4].split(":")[1].replaceAll("\"",""));
+            double discount = Double.parseDouble(savRES[i].split(",")[5].split(":")[1].replaceAll("\"",""));
+            String barCode = savRES[i].split(",")[6].split(":")[1].replaceAll("\"","");
+
+            products.add(new Product(id,name,quantity,price,category,discount,barCode));
+        }
+
+        return products;
     }
 
 

@@ -58,14 +58,15 @@ public class CashierController implements Initializable {
 
     public void napuni(){
         Category category = new Category(1,"categoriy");
-        this.products.add(new Product("Jabuke",20,2,1,"0",category));
-        this.products.add(new Product("Kruske",50,2,1,"0",category));
-        this.products.add(new Product("Banane", 10,2,1,"0",category));
-        this.products.add(new Product("Kasike",40,2,1,"0",category));
-        this.products.add(new Product("Ubrusi",40,2,1,"0",category));
-        this.products.add(new Product("Laptop",40,2,1,"0",category));
-        this.products.add(new Product("Parfem",40,2,1,"0",category));
-        this.products.add(new Product("Knjiga",40,2,1,"0",category));
+
+        this.products.add(new Product("Jabuke",20,2,1,0,"123"));
+        this.products.add(new Product("Kruske",50,2,2,0,"123"));
+        this.products.add(new Product("Banane", 10,2,1,0,"123"));
+        this.products.add(new Product("Kasike",40,2,2,0,"123"));
+        this.products.add(new Product("Ubrusi",40,2,1,0,"123"));
+        this.products.add(new Product("Laptop",40,2,2,0,"123"));
+        this.products.add(new Product("Parfem",40,2,1,0,"123"));
+        this.products.add(new Product("Knjiga",40,2,2,0,"123"));
 
     }
 
