@@ -1,6 +1,11 @@
 package ba.unsa.etf.nrs.projekat.Controllers;
 
+import ba.unsa.etf.nrs.projekat.Classes.Employee;
+import ba.unsa.etf.nrs.projekat.Classes.User;
 import ba.unsa.etf.nrs.projekat.Controllers.CashierController;
+import ba.unsa.etf.nrs.projekat.PosDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -28,10 +34,50 @@ public class LoginController {
     String warehousemanName = "skladistar";
     String warehousemanPass = "skladistar";
 
+    public int checkLogin(String username, String password) throws IOException, ParseException {
+        //metoda vraca -1 ako username ne postoji
+        //metoda vraca 0 ako user postoji ali je sifra pogresna
+        //metoda vraca 1 ako je user kasir
+        //metoda vraca 2 ako je user menadzer
+        //metoda vraca 3 ako je user skladistar
+        int out = -1;
 
-    public void loginAdminAction(ActionEvent actionEvent) throws IOException {
+        //role 1 je kasir, role 2 je menadzer, role 3 je skladistar
 
-        if((adminUsername.getText().equals(adminName) && adminPassword.getText().equals(adminPass))){
+        ObservableList<Employee> employees;
+        employees= PosDAO.getInstance().dajZaposlene();
+
+        ObservableList<User> users;
+        users = PosDAO.getInstance().dajUsere();
+
+        for(int i=0;i<employees.size();i++){
+            for(int j=0;j<users.size();j++){
+                if(employees.get(i).getUserId()==users.get(j).getId()){
+                    //nasli smo usera za zaposelnog
+                    if(users.get(j).getUsername().equals(username)){
+                        if(users.get(j).getPassword().equals(password)){
+                            if(employees.get(i).getRole()==1) out=1;
+                            else if(employees.get(i).getRole()==2) out=2;
+                            else out=3;
+
+                        }
+
+
+                    }
+
+                }
+            }
+        }
+
+    return out;
+
+    }
+
+
+    public void loginAdminAction(ActionEvent actionEvent) throws IOException, ParseException {
+        int user = checkLogin(adminUsername.getText(), adminPassword.getText());
+
+        if(user==2){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Dobrodošli");
             alert.setHeaderText("Uspješno ste se registrovali");
@@ -52,7 +98,7 @@ public class LoginController {
             zatvori.close();
         }
 
-        else if(adminUsername.getText().equals(cashierName) && adminPassword.getText().equals(cashierPass)){
+        else if(user==1){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Dobrodošli");
             alert.setHeaderText("Uspješno ste se registrovali");
@@ -73,7 +119,7 @@ public class LoginController {
             zatvori.close();
         }
 
-        else if((adminUsername.getText().equals(warehousemanName) && adminPassword.getText().equals(warehousemanPass))){
+        else if(user==3){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Dobrodošli");
             alert.setHeaderText("Uspješno ste se registrovali");
