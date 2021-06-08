@@ -1,7 +1,12 @@
 package ba.unsa.etf.nrs.projekat.Controllers;
 
+import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.Classes.User;
+import ba.unsa.etf.nrs.projekat.PosDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,10 +16,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class UserManagementController {
+public class UserManagementController implements Initializable {
 
     public Button btnBackUser;
     public ListView usersList;
@@ -26,6 +35,31 @@ public class UserManagementController {
     public TextField phoneFld;
     public TextField addressFld;
     public DatePicker birthDatePicker;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+       /* ObservableList<User> users = (ObservableList<User>) new Obser<User>();
+        try {
+            users = PosDAO.getInstance().getUsers();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> usersName = (ObservableList<String>) new ArrayList<String>();
+        for (User a:users) {
+            //System.out.println(a.getUsername());
+            usersName.add(a.getUsername());
+        }*/
+        ObservableList<User>users = null;
+        try {
+            users = PosDAO.getInstance().getUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        usersList.setItems(users);
+    }
+
 
     public void backAction(ActionEvent actionEvent) {
         Parent root = null;

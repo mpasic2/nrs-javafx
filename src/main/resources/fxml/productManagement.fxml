@@ -29,7 +29,7 @@
     </left>
     <right>
         <TabPane>
-            <Tab text="Product">
+            <Tab closable="false" text="Product">
                 <VBox prefHeight="369.0" prefWidth="223.0" BorderPane.alignment="CENTER">
                     <children>
                         <TextField fx:id="productNameFld" promptText="Product name">
@@ -65,7 +65,7 @@
                     </children>
                 </VBox>
             </Tab>
-            <Tab text="Discount">
+            <Tab closable="false" text="Discount">
                 <VBox>
                     <Label text="Article category:">
                   <VBox.margin>
