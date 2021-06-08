@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,6 +17,15 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class UserManagementController {
 
     public Button btnBackUser;
+    public ListView usersList;
+    public TextField firstNameFld;
+    public TextField lastNameFld;
+    public TextField usernameFld;
+    public TextField passwordFld;
+    public TextField emailFld;
+    public TextField phoneFld;
+    public TextField addressFld;
+    public DatePicker birthDatePicker;
 
     public void backAction(ActionEvent actionEvent) {
         Parent root = null;
@@ -28,5 +40,11 @@ public class UserManagementController {
         primaryStage.show();
         Stage zatvori = (Stage) btnBackUser.getScene().getWindow();
         zatvori.close();
+    }
+
+    public void changeBtn(ActionEvent actionEvent) {
+    }
+
+    public void addBtn(ActionEvent actionEvent) {
     }
 }
