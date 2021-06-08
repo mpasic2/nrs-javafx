@@ -1,9 +1,11 @@
 package ba.unsa.etf.nrs.projekat.Classes;
 
+import ba.unsa.etf.nrs.projekat.PosDAO;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -18,6 +20,7 @@ public class Employee {
     SimpleObjectProperty<LocalDate> hireDate;
     SimpleStringProperty jobTitle;
     SimpleIntegerProperty role;
+    public PosDAO baza = new PosDAO();
 
 
    /* public Employee(String ime, String prezime, String JMBG, String adresa, String brojMobitela, String email, LocalDate datumZaposlenja, Uloga uloga) {
@@ -114,6 +117,7 @@ public class Employee {
 
     @Override
     public String toString() {
+
         return "Employee{" +
                 "id=" + id +
                 ", userId=" + userId +
@@ -123,4 +127,6 @@ public class Employee {
                 ", role=" + role +
                 '}'+ "\n";
     }
+
+
 }

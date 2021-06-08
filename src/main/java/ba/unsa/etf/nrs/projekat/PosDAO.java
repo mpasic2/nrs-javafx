@@ -88,6 +88,12 @@ public class PosDAO extends BaseDAO{
         return useri;
     }
 
+    public User getUserById(int id) throws IOException {
+        ObservableList<User> users = getUsers();
+
+        return users.get(id-1);
+    }
+
 
 
 
@@ -127,6 +133,17 @@ public class PosDAO extends BaseDAO{
         }
         return employees;
     }
+
+
+
+
+    public Employee getEmployeeById(int id) throws IOException {
+        ObservableList<Employee> employees = getEmployees();
+
+        return employees.get(id-1);
+
+    }
+
 
 
 

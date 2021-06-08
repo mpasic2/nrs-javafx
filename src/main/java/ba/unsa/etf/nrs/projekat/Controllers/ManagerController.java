@@ -116,19 +116,16 @@ public class ManagerController {
         zatvori.close();
     }
 
-    public void deleteEmply(ActionEvent actionEvent) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/deleteUsers.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void deleteEmply(ActionEvent actionEvent) throws IOException {
+        Stage noviProzor = new Stage();
+        Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/deleteUsers.fxml"));
+        noviProzor.setTitle("Brisanje uposlenika");
+        Scene scene = new Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        noviProzor.setScene(scene);
+        noviProzor.show();
 
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        primaryStage.show();
-        Stage zatvori = (Stage) btnPos.getScene().getWindow();
-        zatvori.close();
+        Stage zatvaranjePoruka = (Stage) btnPos.getScene().getWindow();
+        zatvaranjePoruka.close();
 
     }
 }
