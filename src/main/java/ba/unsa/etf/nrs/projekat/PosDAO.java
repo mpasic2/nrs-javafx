@@ -1,9 +1,6 @@
 package ba.unsa.etf.nrs.projekat;
 
-import ba.unsa.etf.nrs.projekat.Classes.Employee;
-import ba.unsa.etf.nrs.projekat.Classes.Order;
-import ba.unsa.etf.nrs.projekat.Classes.Product;
-import ba.unsa.etf.nrs.projekat.Classes.User;
+import ba.unsa.etf.nrs.projekat.Classes.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.parser.ParseException;
@@ -192,6 +189,7 @@ public class PosDAO extends BaseDAO{
 
         return orders;
     }
+
 
 
 
