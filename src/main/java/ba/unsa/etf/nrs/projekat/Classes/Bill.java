@@ -75,7 +75,7 @@ public class Bill {
 
     @Override
     public String toString() {
-        return "id=" + id + ", total=" + total + ", fiscalNumber=" + fiscalNumber;
+        return "id=" + id.getValue() + ", total=" + total.getValue() + ", fiscalNumber=" + fiscalNumber.getValue();
     }
 
 }

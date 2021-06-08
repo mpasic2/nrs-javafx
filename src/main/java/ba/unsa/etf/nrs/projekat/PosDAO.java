@@ -194,6 +194,34 @@ public class PosDAO extends BaseDAO{
 
 
 
+    public ObservableList<Bill> getBills() throws IOException {
+
+        String adresa = "http://localhost:1000/GetBills";
+        URL url = new URL(adresa);
+        Scanner sc = new Scanner(url.openStream());
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()) {
+            sb.append(sc.next());
+        }
+        String res = sb.toString();
+
+
+        String[] savRES = res.split("},");
+
+        ObservableList<Bill> bills = FXCollections.observableArrayList();
+
+        for(int i=0;i<savRES.length;i++){
+            int id = Integer.parseInt(savRES[i].split(",")[0].split(":")[1].replaceAll("\"",""));
+            int orderId =  Integer.parseInt(savRES[i].split(",")[1].split(":")[1].replaceAll("\"",""));
+            double total = Double.parseDouble(savRES[i].split(",")[2].split(":")[1].replaceAll("\"",""));
+            int date = Integer.parseInt(savRES[i].split(",")[3].split(":")[1].replaceAll("\"",""));
+
+
+            bills.add(new Bill(id,orderId,total,date));
+        }
+
+        return bills;
+    }
 
 
 

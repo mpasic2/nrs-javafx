@@ -1,5 +1,6 @@
 package ba.unsa.etf.nrs.projekat;
 
+import ba.unsa.etf.nrs.projekat.Classes.Bill;
 import ba.unsa.etf.nrs.projekat.Classes.Order;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
 import javafx.application.Application;
@@ -29,7 +30,7 @@ public class Main extends Application {
         primaryStage.show();*/
 //    PosDAO posDAO = PosDAO.getInstance();
 //        System.out.printf(String.valueOf(posDAO.getUser(0).firstName));
-        ObservableList<Order> sss = PosDAO.getInstance().getOrders();
+        ObservableList<Bill> sss = PosDAO.getInstance().getBills();
         System.out.println(sss);
 
 
