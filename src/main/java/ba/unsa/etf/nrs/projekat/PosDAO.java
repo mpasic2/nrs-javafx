@@ -1,6 +1,7 @@
 package ba.unsa.etf.nrs.projekat;
 
 import ba.unsa.etf.nrs.projekat.Classes.Employee;
+import ba.unsa.etf.nrs.projekat.Classes.Order;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -90,7 +92,7 @@ public class PosDAO extends BaseDAO{
     }
 
 
-    public ObservableList<Employee> dajZaposlene() throws IOException {
+    public ObservableList<Employee> getEmployees() throws IOException {
 
         String adresa = "http://localhost:1000/GetEmployees";
         URL url = new URL(adresa);
@@ -129,7 +131,7 @@ public class PosDAO extends BaseDAO{
 
 
 
-    public ObservableList<Product> dajArtikle() throws IOException {
+    public ObservableList<Product> getProducts() throws IOException {
 
         String adresa = "http://localhost:1000/GetProducts";
         URL url = new URL(adresa);
@@ -158,6 +160,37 @@ public class PosDAO extends BaseDAO{
         }
 
         return products;
+    }
+
+    public ObservableList<Order> getOrders() throws IOException {
+
+        String adresa = "http://localhost:1000/GetOrders";
+        URL url = new URL(adresa);
+        Scanner sc = new Scanner(url.openStream());
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()) {
+            sb.append(sc.next());
+        }
+        String res = sb.toString();
+
+
+        String[] savRES = res.split("},");
+
+        ObservableList<Order> orders = FXCollections.observableArrayList();
+
+        for(int i=0;i<savRES.length;i++){
+            int id = Integer.parseInt(savRES[i].split(",")[0].split(":")[1].replaceAll("\"",""));
+            int empId =  Integer.parseInt(savRES[i].split(",")[1].split(":")[1].replaceAll("\"",""));
+            int pymntId = Integer.parseInt(savRES[i].split(",")[2].split(":")[1].replaceAll("\"",""));
+            String date = savRES[i].split(",")[3].split(":")[1].replaceAll("\"","");
+            String status =  savRES[i].split(",")[4].split(":")[1].replaceAll("\"","");
+
+            LocalDate lcd = LocalDate.parse(date.split("T")[0]);
+
+            orders.add(new Order(id,empId,pymntId,lcd,status));
+        }
+
+        return orders;
     }
 
 

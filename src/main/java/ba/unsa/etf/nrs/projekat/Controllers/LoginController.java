@@ -36,7 +36,7 @@ public class LoginController {
         //role 1 je kasir, role 2 je menadzer, role 3 je skladistar
 
         ObservableList<Employee> employees;
-        employees= PosDAO.getInstance().dajZaposlene();
+        employees= PosDAO.getInstance().getEmployees();
 
         ObservableList<User> users;
         users = PosDAO.getInstance().dajUsere();

@@ -1,6 +1,9 @@
 package ba.unsa.etf.nrs.projekat;
 
+import ba.unsa.etf.nrs.projekat.Classes.Order;
+import ba.unsa.etf.nrs.projekat.Classes.Product;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +29,8 @@ public class Main extends Application {
         primaryStage.show();*/
 //    PosDAO posDAO = PosDAO.getInstance();
 //        System.out.printf(String.valueOf(posDAO.getUser(0).firstName));
-        System.out.println(PosDAO.getInstance().dajArtikle());
+        ObservableList<Order> sss = PosDAO.getInstance().getOrders();
+        System.out.println(sss);
 
 
 
