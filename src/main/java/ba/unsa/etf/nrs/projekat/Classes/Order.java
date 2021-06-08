@@ -26,6 +26,11 @@ public class Order {
     public Order() {
     }
 
+    @Override
+    public String toString() {
+        return "id=" + id.getValue() + ", paymentType=" + paymentType.getValue() + ", date=" + date.getValue() + ", status=" + status.getValue() + "\n";
+    }
+
     public int getId() {
         return id.get();
     }
