@@ -68,8 +68,7 @@
             <MenuItem mnemonicParsing="false" text="Dodaj menadžera" />
             <MenuItem mnemonicParsing="false" text="Dodaj kasira" />
             <MenuItem mnemonicParsing="false" text="Dodaj skladištara" />
-            <MenuItem mnemonicParsing="false" text="Obriši kasira" />
-            <MenuItem mnemonicParsing="false" text="Obriši skladištara" />
+            <MenuItem mnemonicParsing="false" text="Obriši uposlenika" onAction="#deleteEmply"/>
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Pomoc">

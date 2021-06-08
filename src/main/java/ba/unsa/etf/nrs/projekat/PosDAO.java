@@ -54,7 +54,7 @@ public class PosDAO extends BaseDAO{
 
 
 
-    public ObservableList<User> dajUsere() throws IOException, ParseException {
+    public ObservableList<User> getUsers() throws IOException {
 
         String adresa = "http://localhost:1000/GetUsers";
         URL url = new URL(adresa);
@@ -87,6 +87,8 @@ public class PosDAO extends BaseDAO{
 
         return useri;
     }
+
+
 
 
     public ObservableList<Employee> getEmployees() throws IOException {
@@ -125,6 +127,7 @@ public class PosDAO extends BaseDAO{
         }
         return employees;
     }
+
 
 
 

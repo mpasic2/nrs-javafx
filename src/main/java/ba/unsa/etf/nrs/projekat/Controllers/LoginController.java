@@ -39,7 +39,7 @@ public class LoginController {
         employees= PosDAO.getInstance().getEmployees();
 
         ObservableList<User> users;
-        users = PosDAO.getInstance().dajUsere();
+        users = PosDAO.getInstance().getUsers();
 
         for(int i=0;i<employees.size();i++){
             for(int j=0;j<users.size();j++){
