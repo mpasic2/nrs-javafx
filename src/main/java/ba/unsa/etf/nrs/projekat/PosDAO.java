@@ -370,7 +370,125 @@ public class PosDAO extends BaseDAO{
 
     }
 
+    public void deleteCategories() throws IOException {
+        String url = "http://localhost:1000/DeleteCategories";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
 
+    public void deleteCategoryById(Integer id) throws IOException {
+        String url = "http://localhost:1000/DeleteCategory/:"+id;
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteEmployees() throws IOException {
+        String url = "http://localhost:1000/DeleteEmployees";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteEmployeeById(Integer id) throws IOException {
+        String url = "http://localhost:1000/DeleteEmployees/:"+id;
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteOrders() throws IOException {
+        String url = "http://localhost:1000/DeleteOrders";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteOrderById(Integer id) throws IOException {
+        String url = "http://localhost:1000/DeleteOrders/:"+id;
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteOrderItems() throws IOException {
+        String url = "http://localhost:1000/DeleteOrderItems";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteProducts() throws IOException {
+        String url = "http://localhost:1000/DeleteProducts";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteProductsById(Integer id) throws IOException {
+        String url = "http://localhost:1000/DeleteProducts/:"+id;
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteUser() throws IOException {
+        String url = "http://localhost:1000/DeleteUsers";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+
+    public void deleteUsersById(Integer id) throws IOException {
+        String url = "http://localhost:1000/DeleteUsers/:"+id;
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+    }
+    //METODA NIJE NAPRALVJENA KAKO JE OCEKIVANO, GET METODA A OD NEKUD UZIMA BARCODE NE ZNAM OD KUD.. NEMAM GDJE POSLAT
+    /*public void deleteProductsByBarCode(String barCode) throws IOException {
+            String url = "http://localhost:1000/DeleteProducts/:"+barCode;
+            URL link = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty("Content-Type","application/json; utf-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setDoOutput(true);
+        }*/
 
 /*  POGLEDAJ ADDEMPLOYEE... ZADNJI ATRIBUT ROLE PARSA INT A TRAZI EMAIL
     public void addEmployee(Employee employee) throws IOException {
