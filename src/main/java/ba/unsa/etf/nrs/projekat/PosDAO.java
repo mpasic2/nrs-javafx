@@ -479,6 +479,32 @@ public class PosDAO extends BaseDAO{
         connection.setRequestProperty("Accept","application/json");
         connection.setDoOutput(true);
     }
+
+    public void updateCategory(Category category) throws IOException {
+        String url = "http://localhost:1000/UpdateCategory/:"+category.getId();
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"name\": \"" + category.getName() +"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+
     //METODA NIJE NAPRALVJENA KAKO JE OCEKIVANO, GET METODA A OD NEKUD UZIMA BARCODE NE ZNAM OD KUD.. NEMAM GDJE POSLAT
     /*public void deleteProductsByBarCode(String barCode) throws IOException {
             String url = "http://localhost:1000/DeleteProducts/:"+barCode;
