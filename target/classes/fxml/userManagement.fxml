@@ -1,18 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.nrs.projekat.Controllers.UserManagementController">
-    <center>
-        <Label text="TO DO" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
-    </center>
     <bottom>
-        <Button fx:id="btnBackUser" mnemonicParsing="false" onAction="#backAction" text="Nazad" BorderPane.alignment="CENTER" />
+      <ButtonBar>
+         <buttons>
+              <Button fx:id="btnBackUser" alignment="CENTER" mnemonicParsing="false" onAction="#backAction" text="Back">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
+            <Button mnemonicParsing="false" onAction="#changeBtn" text="Change" />
+            <Button mnemonicParsing="false" onAction="#addBtn" text="Add" />
+         </buttons>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </ButtonBar>
     </bottom>
+   <left>
+      <ListView fx:id="usersList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin>
+      </ListView>
+   </left>
+   <right>
+      <VBox prefHeight="369.0" prefWidth="223.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="firstNameFld" promptText="First name">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="lastNameFld" promptText="Last name">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="usernameFld" promptText="Username">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="passwordFld" promptText="Password">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="emailFld" promptText="E-mail">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="phoneFld" promptText="Phone">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="addressFld" promptText="Adress">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <DatePicker fx:id="birthDatePicker" prefHeight="26.0" prefWidth="214.0" promptText="Birthday">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </DatePicker>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

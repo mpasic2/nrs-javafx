@@ -3,9 +3,11 @@ package ba.unsa.etf.nrs.projekat;
 import ba.unsa.etf.nrs.projekat.Classes.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -210,10 +212,6 @@ public class PosDAO extends BaseDAO{
         return orders;
     }
 
-
-
-
-
     public ObservableList<Bill> getBills() throws IOException {
 
         String adresa = "http://localhost:1000/GetBills";
@@ -243,7 +241,172 @@ public class PosDAO extends BaseDAO{
         return bills;
     }
 
+    public void addProduct(Product product) throws IOException {
+        String url = "http://localhost:1000/AddProduct";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"name\": \"" + product.getName() + "\"quantity\": \""+product.getQuantity() +
+                "\"price\": \""+product.getPrice() +"\"categoriyId\": \""+product.getCategory() +
+                "\"discount\": \""+product.getDiscount() +"\"barCode\": \""+product.getBarCode() +
+                "\"imgUrl\": \""+null +"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+
+    public void addUser(User user) throws IOException {
+        String url = "http://localhost:1000/AddUser";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"firstName\": \"" + user.getFirstName() + "\"lastName\": \""+user.getLastName() +
+                "\"username\": \""+user.getUsername() +"\"password\": \""+user.getPassword() +
+                "\"email\": \""+user.getEmail() +"\"phone\": \""+user.getPhone() +
+                "\"address\": \""+user.getAdress()+"\"birthDate\": \""+user.getBirthDate()+"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+    public void addCategory(Category category) throws IOException {
+        String url = "http://localhost:1000/AddCategory";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"name\": \"" + category.getName() +"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+    public void addOrder(Order order) throws IOException {
+        String url = "http://localhost:1000/AddOrder";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"employeeId\": \"" + order.getEmployerId() + "\"paymentType\": \""+order.getPaymentType() +
+                "\"datetime\": \""+order.getDate() +"\"status\": \""+order.getStatus() +"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+    public void addBill(Bill bill) throws IOException {
+        String url = "http://localhost:1000/AddBill";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"orderId\": \"" + bill.getOrderId() + "\"total\": \""+bill.getTotal() +
+                "\"fiscalNumber\": \""+bill.getFiscalNumber()+"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }
+
+
+
+/*  POGLEDAJ ADDEMPLOYEE... ZADNJI ATRIBUT ROLE PARSA INT A TRAZI EMAIL
+    public void addEmployee(Employee employee) throws IOException {
+        String url = "http://localhost:1000/AddUser";
+        URL link = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type","application/json; utf-8");
+        connection.setRequestProperty("Accept","application/json");
+        connection.setDoOutput(true);
+
+        OutputStream out = connection.getOutputStream();
+        String prod = "{\"userId\": \"" + employee.getUserId() + "\"managerId\": \""+employee.getManagerId() +
+                "\"hireDate\": \""+employee.getHireDate() +"\"jobTitle\": \""+employee.getJobTitle() +
+                "\"email\": \""+employee.gete() +"}";
+        byte[] ulaz = prod.getBytes("utf-8");
+        out.write(ulaz,0,ulaz.length);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+        String js = "", line = null;
+        while ((line = input.readLine())!=null){
+            js=js+line;
+        }
+
+        JSONObject res = new JSONObject(js);
+
+    }*/
+
 
 
 
 }
+
+
+
+
+
+
+
