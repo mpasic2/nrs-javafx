@@ -1,6 +1,6 @@
 package ba.unsa.etf.nrs.projekat.Classes;
 
-import ba.unsa.etf.nrs.projekat.Classes.Category;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -41,7 +41,17 @@ public class Product {
         this.barCode = new SimpleStringProperty(barCode);
     }
 
+    public String getImgUrl() {
+        return imgUrl.get();
+    }
 
+    public SimpleStringProperty imgUrlProperty() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl.set(imgUrl);
+    }
 
     public int getId() {
         return id.get();
@@ -137,6 +147,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return name.get() +"  "+ barCode.get()+"  "+ quantity.get();
+        return name.get() +"  "+ barCode.get();
     }
 }

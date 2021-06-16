@@ -1,7 +1,11 @@
 package ba.unsa.etf.nrs.projekat.Controllers;
 
 import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.Classes.User;
 import ba.unsa.etf.nrs.projekat.PosDAO;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +46,46 @@ public class ProductManagementController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        productList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Product>() {
+            @Override
+            public void changed(ObservableValue<? extends Product> observableValue, Product stari, Product novi) {
+                //usersList.setSelectionModel().select(novi);
+                if(stari!=null) {
+                    productNameFld.textProperty().unbindBidirectional(stari.nameProperty());
+                    quantityFld.textProperty().unbindBidirectional(stari.quantityProperty());
+                    priceFld.textProperty().unbindBidirectional(stari.priceProperty());
+                    categoryFld.textProperty().unbindBidirectional(stari.categoryProperty());
+                    discountFld.textProperty().unbindBidirectional(stari.discountProperty());
+                    barCodeFld.textProperty().unbindBidirectional(stari.barCodeProperty());
+
+
+                }
+                if(novi==null){
+                    productNameFld.setText("");
+                    quantityFld.setText("");
+                    priceFld.setText("");
+                    categoryFld.setText("");
+                    discountFld.setText("");
+                    barCodeFld.setText("");
+
+
+                }
+                else{
+                    productNameFld.textProperty().bindBidirectional(novi.nameProperty());
+                    //quantityFld.textProperty().bindBidirectional(novi.quantityProperty());
+                    //priceFld.textProperty().bindBidirectional(novi.priceProperty());
+                   // categoryFld.textProperty().bindBidirectional(novi.categoryProperty());
+                   // discountFld.textProperty().bindBidirectional(novi.discountProperty());
+                    barCodeFld.textProperty().bindBidirectional(novi.barCodeProperty());
+
+                }
+
+            }
+        });
+
+
+
     }
 
 
