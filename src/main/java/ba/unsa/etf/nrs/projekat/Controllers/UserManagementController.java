@@ -62,8 +62,7 @@ public class UserManagementController implements Initializable {
                     passwordFld.textProperty().unbindBidirectional(stari.passwordProperty());
                     addressFld.textProperty().unbindBidirectional(stari.adressProperty());
                     phoneFld.textProperty().unbindBidirectional(stari.phoneProperty());
-                    //birthDatePicker.textProperty().unbindBidirectional(stari.passwordProperty());
-                }
+                  }
                 if(novi==null){
                     firstNameFld.setText("");
                     lastNameFld.setText("");
@@ -72,7 +71,7 @@ public class UserManagementController implements Initializable {
                     passwordFld.setText("");
                     addressFld.setText("");
                     phoneFld.setText("");
-                    //birthDatePicker.setText("");
+
 
                 }
                 else{
@@ -84,7 +83,6 @@ public class UserManagementController implements Initializable {
                     passwordFld.textProperty().bindBidirectional(novi.passwordProperty());
                     addressFld.textProperty().bindBidirectional(novi.adressProperty());
                     phoneFld.textProperty().bindBidirectional(novi.phoneProperty());
-                    //birthDatePicker.textProperty().bindBidirectional(novi.passwordProperty());
                 }
 
             }

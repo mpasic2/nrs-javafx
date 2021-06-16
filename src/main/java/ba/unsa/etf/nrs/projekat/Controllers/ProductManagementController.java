@@ -56,6 +56,7 @@ public class ProductManagementController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Product> observableValue, Product stari, Product novi) {
                 //usersList.setSelectionModel().select(novi);
+                NumberStringConverter converter = new NumberStringConverter();
                 if(stari!=null) {
                     productNameFld.textProperty().unbindBidirectional(stari.nameProperty());
                     quantityFld.textProperty().unbindBidirectional(stari.quantityProperty());
