@@ -2,6 +2,7 @@ package ba.unsa.etf.nrs.projekat.Controllers;
 
 import ba.unsa.etf.nrs.projekat.Classes.Category;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.Classes.User;
 import ba.unsa.etf.nrs.projekat.PosDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -93,15 +94,38 @@ public class WarehouseManagemantController implements Initializable {
             e.printStackTrace();
         }
         listProducts1.setItems(products);
+        listProducts1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Product>() {
+            @Override
+            public void changed(ObservableValue<? extends Product> observableValue, Product stari, Product novi) {
+                //usersList.setSelectionModel().select(novi);
+                if(stari!=null) {
+                    fldBarCode.textProperty().unbindBidirectional(stari.barCodeProperty());
+                    fldQuantity.textProperty().unbindBidirectional(stari.quantityProperty());
+                }
+                if(novi==null){
+                    fldBarCode.setText("");
+                    fldQuantity.setText("");
+
+                }
+                else{
+                    NumberStringConverter converter = new NumberStringConverter();
+
+                    fldBarCode.textProperty().bindBidirectional(novi.barCodeProperty());
+                    fldQuantity.textProperty().bindBidirectional(novi.quantityProperty(),converter);
+
+                }
+
+            }
+        });
 
 
 
-        listProducts1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        /*listProducts1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selectedProduct = (Product) newValue;
             }
-        });
+        });*/
     }
 
     public void btnChangeQ(ActionEvent actionEvent) {

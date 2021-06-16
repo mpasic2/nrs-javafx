@@ -1,9 +1,6 @@
 package ba.unsa.etf.nrs.projekat;
 
-import ba.unsa.etf.nrs.projekat.Classes.Bill;
-import ba.unsa.etf.nrs.projekat.Classes.Order;
-import ba.unsa.etf.nrs.projekat.Classes.Product;
-import ba.unsa.etf.nrs.projekat.Classes.User;
+import ba.unsa.etf.nrs.projekat.Classes.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +22,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,USE_COMPUTED_SIZE , USE_COMPUTED_SIZE));
         //primaryStage.setResizable(false);
         primaryStage.show();
-        Bill bil = new Bill(10,1,50.0,123321);
-        //ApiAdapter.getRetrofit().addBill(bil);
+        BillDTO bil = new BillDTO(10,1,50.0,123321);
+        //ApiAdapter.getRetrofit().addBill(bil).execute();
 
         /*  User usr = new User(1,"Amer","Karahasan","akarahasan4","12345","akarahasan@email.com","066666666","Nema kuce", LocalDate.now());
         PosDAO.getInstance().addUser(usr);
