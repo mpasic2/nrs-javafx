@@ -57,7 +57,10 @@
                 </ButtonBar>
             </bottom>
          <right>
-            <ListView fx:id="listProducts1" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="listProducts1" prefHeight="200.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" right="30.0" top="30.0" />
+               </BorderPane.margin></ListView>
          </right>
         </BorderPane>
     </children>

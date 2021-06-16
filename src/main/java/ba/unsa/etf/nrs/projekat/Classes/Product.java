@@ -149,6 +149,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return name.get() +"  "+ barCode.get();
+        return name.get() +" - "+ barCode.get() + " - " + quantity.get();
     }
 }

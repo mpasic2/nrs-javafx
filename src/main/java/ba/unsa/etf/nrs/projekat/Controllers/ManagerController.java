@@ -53,6 +53,7 @@ public class ManagerController {
 
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.setTitle("Upravljanje proizvodima");
         primaryStage.show();
         Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
@@ -83,6 +84,7 @@ public class ManagerController {
 
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.setTitle("Upravljanje uposlenicima");
         primaryStage.show();
         Stage zatvori = (Stage) btnPos.getScene().getWindow();
         zatvori.close();
