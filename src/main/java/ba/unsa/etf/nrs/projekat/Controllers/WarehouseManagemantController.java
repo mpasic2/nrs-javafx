@@ -150,5 +150,19 @@ public class WarehouseManagemantController implements Initializable {
     }
 
 
+    public void goBackButton(ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
+        Stage zatvori = (Stage) listProducts1.getScene().getWindow();
+        zatvori.close();
+
+    }
 }

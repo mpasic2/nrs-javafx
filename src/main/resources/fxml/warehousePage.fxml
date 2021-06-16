@@ -44,6 +44,7 @@
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
                     <buttons>
+                  <Button mnemonicParsing="false" onAction="#goBackButton" text="Nazad" translateY="-5.0" />
                         <Button mnemonicParsing="false" onAction="#btnChangeQ" text="Izmijeni" translateY="-5.0" />
                         <Button mnemonicParsing="false" onAction="#btnAdd" text="Dodaj novi" translateY="-5.0" />
 

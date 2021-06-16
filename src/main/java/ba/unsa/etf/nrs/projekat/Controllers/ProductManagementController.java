@@ -3,6 +3,8 @@ package ba.unsa.etf.nrs.projekat.Controllers;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
 import ba.unsa.etf.nrs.projekat.PosDAO;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,10 +78,10 @@ public class ProductManagementController implements Initializable {
                 }
                 else{
                     productNameFld.textProperty().bindBidirectional(novi.nameProperty());
-                    //quantityFld.textProperty().bindBidirectional(novi.quantityProperty());
-                    //priceFld.textProperty().bindBidirectional(novi.priceProperty());
-                   // categoryFld.textProperty().bindBidirectional(novi.categoryProperty());
-                   // discountFld.textProperty().bindBidirectional(novi.discountProperty());
+                    quantityFld.textProperty().bindBidirectional(novi.quantityProperty(),converter);
+                    priceFld.textProperty().bindBidirectional(novi.priceProperty(),converter);
+                    categoryFld.textProperty().bindBidirectional(novi.categoryProperty(),converter);
+                    discountFld.textProperty().bindBidirectional(novi.discountProperty(),converter);
                     barCodeFld.textProperty().bindBidirectional(novi.barCodeProperty());
 
                 }
