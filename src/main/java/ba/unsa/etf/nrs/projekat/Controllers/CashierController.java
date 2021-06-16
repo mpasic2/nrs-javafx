@@ -2,6 +2,7 @@ package ba.unsa.etf.nrs.projekat.Controllers;
 
 import ba.unsa.etf.nrs.projekat.Classes.Category;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.PosDAO;
 import com.github.sarxos.webcam.Webcam;
 import com.google.zxing.*;
 import com.google.zxing.common.HybridBinarizer;
@@ -16,17 +17,15 @@ import javafx.fxml.Initializable;
 import com.google.zxing.Result;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -43,6 +42,14 @@ public class CashierController implements Initializable {
     public TableView tableId;
     public TextField fldTotalPaid;
     public TextField fldTotalReturn;
+/*    public TableColumn colName;
+    public TableColumn colPriceOnPice;
+    public TableColumn colQuantity;
+    public TableColumn colSumPrice;*/
+    public TableColumn<Product,String> colName;
+    public TableColumn<Product,String> colPriceOnPice;
+    public TableColumn<Product,Integer> colQuantity;
+    public TableColumn<Product,Double> colSumPrice;
     private Product selectedProduct ;
     public Label lblUsername;
 
@@ -56,17 +63,10 @@ public class CashierController implements Initializable {
     }
 
 
-    public void napuni(){
-        Category category = new Category(1,"categoriy");
+    public void napuni() throws IOException {
 
-        this.products.add(new Product("Jabuke",20,2,1,0,"123"));
-        this.products.add(new Product("Kruske",50,2,2,0,"123"));
-        this.products.add(new Product("Banane", 10,2,1,0,"123"));
-        this.products.add(new Product("Kasike",40,2,2,0,"123"));
-        this.products.add(new Product("Ubrusi",40,2,1,0,"123"));
-        this.products.add(new Product("Laptop",40,2,2,0,"123"));
-        this.products.add(new Product("Parfem",40,2,1,0,"123"));
-        this.products.add(new Product("Knjiga",40,2,2,0,"123"));
+        this.products.addAll(PosDAO.getInstance().getProducts());
+
 
     }
 
@@ -84,7 +84,15 @@ public class CashierController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        napuni();
+        colName.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colPriceOnPice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        try {
+            napuni();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         fldSearchProduct.textProperty().addListener((observable, oldValue, newValue) -> {
             FilteredList<Product> filteredData = new FilteredList<>(FXCollections.observableList(products));
             filteredData.setPredicate(createPredicate(newValue));
@@ -100,7 +108,7 @@ public class CashierController implements Initializable {
                 selectedProduct = (Product) newValue;
                 fldPriceQuant.setText(String.valueOf(selectedProduct.getPrice()));//nekako dobacit cijenu artikla po komadu
                 fldQuant.setText("1");
-                double suma = Integer.parseInt(fldPriceQuant.getText())*Integer.parseInt(fldQuant.getText());
+                double suma = Double.parseDouble(fldPriceQuant.getText())*Double.parseDouble(fldQuant.getText());
                 fldSum.setText(String.valueOf(suma));
             }
         });
@@ -134,7 +142,21 @@ public class CashierController implements Initializable {
         }
     }
 
-    public void addProductAction(ActionEvent actionEvent) {
+    public void addProductAction(ActionEvent actionEvent) throws IOException {
+        String str = String.valueOf(listOfProducts.getSelectionModel().getSelectedItem());
+        String barCode = str.split(" ")[2];
+        Product pr = new Product();
+
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getBarCode().equals(barCode))
+                pr=products.get(i);
+        }
+
+
+        tableId.getItems().add(pr);
+        //double suma = Double.parseDouble(fldPriceQuant.getText())*Double.parseDouble(fldQuant.getText());
+        //colSumPrice.getColumns().add(suma);
+
     }
 
     public void deleteProductAction(ActionEvent actionEvent) {

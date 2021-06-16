@@ -101,8 +101,9 @@ public class ProductManagementController implements Initializable {
         Stage primaryStage = new Stage();
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
-        Stage zatvori = (Stage) btnBackProduct.getScene().getWindow();
-        zatvori.close();
+
+        Stage zatvori1 = (Stage) productList.getScene().getWindow();
+        zatvori1.close();
     }
 
 
