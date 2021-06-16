@@ -3,6 +3,8 @@ package ba.unsa.etf.nrs.projekat.Controllers;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
 import ba.unsa.etf.nrs.projekat.Classes.User;
 import ba.unsa.etf.nrs.projekat.PosDAO;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +48,49 @@ public class UserManagementController implements Initializable {
             e.printStackTrace();
         }
         usersList.setItems(users);
+
+
+        usersList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
+            @Override
+            public void changed(ObservableValue<? extends User> observableValue, User stari, User novi) {
+                //usersList.setSelectionModel().select(novi);
+                if(stari!=null) {
+                    firstNameFld.textProperty().unbindBidirectional(stari.firstNameProperty());
+                    lastNameFld.textProperty().unbindBidirectional(stari.lastNameProperty());
+                    emailFld.textProperty().unbindBidirectional(stari.emailProperty());
+                    usernameFld.textProperty().unbindBidirectional(stari.usernameProperty());
+                    passwordFld.textProperty().unbindBidirectional(stari.passwordProperty());
+                    addressFld.textProperty().unbindBidirectional(stari.adressProperty());
+                    phoneFld.textProperty().unbindBidirectional(stari.phoneProperty());
+                    //birthDatePicker.textProperty().unbindBidirectional(stari.passwordProperty());
+                }
+                if(novi==null){
+                    firstNameFld.setText("");
+                    lastNameFld.setText("");
+                    emailFld.setText("");
+                    usernameFld.setText("");
+                    passwordFld.setText("");
+                    addressFld.setText("");
+                    phoneFld.setText("");
+                    //birthDatePicker.setText("");
+
+                }
+                else{
+
+                    firstNameFld.textProperty().bindBidirectional(novi.firstNameProperty());
+                    lastNameFld.textProperty().bindBidirectional(novi.lastNameProperty());
+                    emailFld.textProperty().bindBidirectional(novi.emailProperty());
+                    usernameFld.textProperty().bindBidirectional(novi.usernameProperty());
+                    passwordFld.textProperty().bindBidirectional(novi.passwordProperty());
+                    addressFld.textProperty().bindBidirectional(novi.adressProperty());
+                    phoneFld.textProperty().bindBidirectional(novi.phoneProperty());
+                    //birthDatePicker.textProperty().bindBidirectional(novi.passwordProperty());
+                }
+
+            }
+        });
+
+
     }
 
 
@@ -67,6 +112,15 @@ public class UserManagementController implements Initializable {
     public void changeBtn(ActionEvent actionEvent) {
     }
 
-    public void addBtn(ActionEvent actionEvent) {
+    public void addBtn(ActionEvent actionEvent) throws IOException {
+        Stage noviProzor = new Stage();
+        Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/addNewUser.fxml"));
+        noviProzor.setTitle("Dodavanje korisnika");
+        Scene scene = new Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        noviProzor.setScene(scene);
+        noviProzor.show();
+
+        Stage zatvaranjePoruka = (Stage) firstNameFld.getScene().getWindow();
+        zatvaranjePoruka.close();
     }
 }

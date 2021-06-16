@@ -14,12 +14,12 @@ public class Product {
     private SimpleIntegerProperty category;
     private SimpleDoubleProperty discount;
     private SimpleStringProperty barCode;
-    
+    private SimpleStringProperty imgUrl;
 
     public Product() {
     }
 
-    public Product(int id, String name, int quantity, double price, int category, double discount, String barCode) {
+    public Product(int id, String name, int quantity, double price, int category, double discount, String barCode, String imgUrl) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.quantity = new SimpleIntegerProperty(quantity);
@@ -27,6 +27,7 @@ public class Product {
         this.price = new SimpleDoubleProperty(price);
         this.discount = new SimpleDoubleProperty(discount);
         this.barCode = new SimpleStringProperty(barCode);
+        this.imgUrl = new SimpleStringProperty(imgUrl);
 
     }
 

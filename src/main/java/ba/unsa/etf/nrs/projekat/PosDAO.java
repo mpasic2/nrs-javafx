@@ -174,8 +174,9 @@ public class PosDAO extends BaseDAO{
             int category =  Integer.parseInt(savRES[i].split(",")[4].split(":")[1].replaceAll("\"",""));
             double discount = Double.parseDouble(savRES[i].split(",")[5].split(":")[1].replaceAll("\"",""));
             String barCode = savRES[i].split(",")[6].split(":")[1].replaceAll("\"","");
+            String img = savRES[i].split(",")[7].split(":")[1].replaceAll("\"","");
 
-            products.add(new Product(id,name,quantity,price,category,discount,barCode));
+            products.add(new Product(id,name,quantity,price,category,discount,barCode,img));
         }
 
         return products;
