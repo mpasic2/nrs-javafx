@@ -41,6 +41,8 @@ public class Product {
         this.barCode = new SimpleStringProperty(barCode);
     }
 
+
+
     public String getImgUrl() {
         return imgUrl.get();
     }

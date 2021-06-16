@@ -6,6 +6,7 @@ import ba.unsa.etf.nrs.projekat.PosDAO;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,7 @@ public class ProductManagementController implements Initializable {
     public TextField barCodeFld;
     public TextField discDiscountFld;
     public TextField discCategoryFld;
+
 
 
     @Override

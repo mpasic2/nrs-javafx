@@ -84,7 +84,7 @@ public class CashierController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colName.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         colPriceOnPice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
@@ -152,8 +152,8 @@ public class CashierController implements Initializable {
                 pr=products.get(i);
         }
 
-
-        tableId.getItems().add(pr);
+        Product realPr = new Product(pr.getName(),Integer.parseInt(fldQuant.getText()),pr.getPrice(),pr.getCategory(),pr.getDiscount(),pr.getBarCode());
+        tableId.getItems().add(realPr);
         //double suma = Double.parseDouble(fldPriceQuant.getText())*Double.parseDouble(fldQuant.getText());
         //colSumPrice.getColumns().add(suma);
 

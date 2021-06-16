@@ -45,11 +45,11 @@
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passwordFld" promptText="Lozinka">
+            <PasswordField fx:id="passwordFld" editable="false" promptText="Lozinka">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
-            </TextField>
+            </PasswordField>
             <TextField fx:id="emailFld" promptText="E-mail">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />

@@ -117,14 +117,10 @@ public class LoginController {
             alert.setContentText("Uspješan login");
             alert.showAndWait();
 
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/warehousePage.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/warehousePage.fxml"));
+            primaryStage.setTitle("E-glasanje");
             primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             primaryStage.show();
             Stage zatvori = (Stage) adminUsername.getScene().getWindow();

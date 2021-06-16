@@ -2,6 +2,7 @@ package ba.unsa.etf.nrs.projekat.Controllers;
 
 import ba.unsa.etf.nrs.projekat.Classes.Category;
 import ba.unsa.etf.nrs.projekat.Classes.Product;
+import ba.unsa.etf.nrs.projekat.PosDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.TextInputDialog;
@@ -19,18 +21,25 @@ import javafx.scene.control.TextInputDialog;
 public class WarehouseManagemantController implements Initializable {
 
 
-    public ListView listProducts;
+    public ListView listProducts1;
     public TextField fldQuantity;
     public TextField fldBarCode;
-    public static ObservableList<Product> products = FXCollections.observableArrayList();
+    public ObservableList<Product> products = FXCollections.observableArrayList();
     private Product selectedProduct ;
+
+    public void napuni() throws IOException {
+
+        this.products.addAll(PosDAO.getInstance().getProducts());
+
+
+    }
 
     public void btnAddProduct(ActionEvent actionEvent) {
         if(fldBarCode.getText()!="" && fldQuantity.getText()!=""){
             //products.add(new Product(fldBarCode.getText(),Integer.parseInt(fldQuantity.getText())));
             addProduct(fldBarCode.getText(),Integer.parseInt(fldQuantity.getText()));
         }
-        listProducts.refresh();
+        listProducts1.refresh();
         fldBarCode.setText("");
         fldQuantity.setText("");
     }
@@ -38,7 +47,7 @@ public class WarehouseManagemantController implements Initializable {
     public void btnRemove(ActionEvent actionEvent) {
 
         deleteProduct(selectedProduct);
-        listProducts.refresh();
+        listProducts1.refresh();
     }
 
     private void deleteProductQuantity(int br){
@@ -63,18 +72,6 @@ public class WarehouseManagemantController implements Initializable {
     private void deleteProduct(Product produkt){
         products.removeIf(produkt::equals);
     }
-    public void napuni(){
-        /*Category category = new Category(1,"categoriy");
-        this.products.add(new Product("Jabuke",20,2,1,"0",category));
-        this.products.add(new Product("Kruske",50,2,1,"0",category));
-        this.products.add(new Product("Banane", 10,2,1,"0",category));
-        this.products.add(new Product("Kasike",40,2,1,"0",category));
-        this.products.add(new Product("Ubrusi",40,2,1,"0",category));
-        this.products.add(new Product("Laptop",40,2,1,"0",category));
-        this.products.add(new Product("Parfem",40,2,1,"0",category));
-        this.products.add(new Product("Knjiga",40,2,1,"0",category));*/
-        //selectedProduct.set(null);
-    }
 
     public void addProduct(String a, int b){
        /*int temp=0;
@@ -90,11 +87,16 @@ public class WarehouseManagemantController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        napuni();
+        try {
+            napuni();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        listProducts1.setItems(products);
 
-        listProducts.setItems(products);
 
-        listProducts.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+        listProducts1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selectedProduct = (Product) newValue;
@@ -108,7 +110,7 @@ public class WarehouseManagemantController implements Initializable {
         txtInput.showAndWait();
 
 
-        String produkt = String.valueOf(listProducts.getSelectionModel().getSelectedItem());
+        String produkt = String.valueOf(listProducts1.getSelectionModel().getSelectedItem());
         String kolicina = produkt.split(" ")[1];
 
 
@@ -125,7 +127,7 @@ public class WarehouseManagemantController implements Initializable {
         else {
 
             deleteProductQuantity(Integer.parseInt(txtInput.getEditor().getText()));
-            listProducts.refresh();
+            listProducts1.refresh();
         }
 
 
@@ -137,11 +139,11 @@ public class WarehouseManagemantController implements Initializable {
         txtInput.showAndWait();
 
 
-        String produkt = String.valueOf(listProducts.getSelectionModel().getSelectedItem());
+        String produkt = String.valueOf(listProducts1.getSelectionModel().getSelectedItem());
         String kolicina = produkt.split(" ")[1];
 
         addProductQuantity(Integer.parseInt(txtInput.getEditor().getText()));
-        listProducts.refresh();
+        listProducts1.refresh();
 
 
 
