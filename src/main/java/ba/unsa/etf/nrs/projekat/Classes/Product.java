@@ -14,6 +14,7 @@ public class Product {
     private SimpleIntegerProperty category;
     private SimpleDoubleProperty discount;
     private SimpleStringProperty barCode;
+    
 
     public Product() {
     }
