@@ -146,9 +146,6 @@ public class User {
 
     @Override
     public String toString() {
-        return  "firstName=" + firstName.getValue() +
-                ", lastName=" + lastName.getValue() +
-                ", email=" + email.getValue() +
-                ", birthDate=" + birthDate.getValue() + "\n";
+        return  firstName.getValue() + " " + lastName.getValue();
     }
 }

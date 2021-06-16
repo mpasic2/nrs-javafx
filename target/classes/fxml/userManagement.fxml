@@ -8,12 +8,12 @@
     <bottom>
       <ButtonBar>
          <buttons>
-              <Button fx:id="btnBackUser" alignment="CENTER" mnemonicParsing="false" onAction="#backAction" text="Back">
+              <Button fx:id="btnBackUser" alignment="CENTER" mnemonicParsing="false" onAction="#backAction" text="Nazad">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>
-            <Button mnemonicParsing="false" onAction="#changeBtn" text="Change" />
-            <Button mnemonicParsing="false" onAction="#addBtn" text="Add" />
+            <Button mnemonicParsing="false" onAction="#changeBtn" text="Promijeni" />
+            <Button mnemonicParsing="false" onAction="#addBtn" text="Dodaj" />
          </buttons>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -30,22 +30,22 @@
    <right>
       <VBox prefHeight="369.0" prefWidth="223.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="firstNameFld" promptText="First name">
+            <TextField fx:id="firstNameFld" promptText="Ime">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="lastNameFld" promptText="Last name">
+            <TextField fx:id="lastNameFld" promptText="Prezime">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="usernameFld" promptText="Username">
+            <TextField fx:id="usernameFld" promptText="Korisnicko ime">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passwordFld" promptText="Password">
+            <TextField fx:id="passwordFld" promptText="Lozinka">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
@@ -55,17 +55,17 @@
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="phoneFld" promptText="Phone">
+            <TextField fx:id="phoneFld" promptText="Telefon">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="addressFld" promptText="Adress">
+            <TextField fx:id="addressFld" promptText="Adresa">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker fx:id="birthDatePicker" prefHeight="26.0" prefWidth="214.0" promptText="Birthday">
+            <DatePicker fx:id="birthDatePicker" prefHeight="26.0" prefWidth="214.0" promptText="Datum rodjenja">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

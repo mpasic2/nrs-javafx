@@ -8,12 +8,12 @@
     <bottom>
         <ButtonBar>
             <buttons>
-                <Button alignment="CENTER" mnemonicParsing="false" onAction="#backAction" text="Back">
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#backAction" text="Nazad">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets></Button>
-                <Button mnemonicParsing="false" onAction="#changeBtn" text="Change" />
-                <Button mnemonicParsing="false" onAction="#addBtn" text="Add" />
+                <Button mnemonicParsing="false" onAction="#changeBtn" text="Promijeni" />
+                <Button mnemonicParsing="false" onAction="#addBtn" text="Dodaj" />
             </buttons>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -29,35 +29,35 @@
     </left>
     <right>
         <TabPane>
-            <Tab closable="false" text="Product">
+            <Tab closable="false" text="Proizvod">
                 <VBox prefHeight="369.0" prefWidth="223.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextField fx:id="productNameFld" promptText="Product name">
+                        <TextField fx:id="productNameFld" promptText="Naziv proizvoda">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="quantityFld" promptText="Quantity">
+                        <TextField fx:id="quantityFld" promptText="Kolicina">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="priceFld" promptText="Price">
+                        <TextField fx:id="priceFld" promptText="Cijena">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="categoryFld" promptText="Category">
+                        <TextField fx:id="categoryFld" promptText="Kategorija">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="discountFld" promptText="Discount">
+                        <TextField fx:id="discountFld" promptText="Popust">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="barCodeFld" promptText="BarCode">
+                        <TextField fx:id="barCodeFld" promptText="Bar kod">
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
                             </VBox.margin>
@@ -65,9 +65,9 @@
                     </children>
                 </VBox>
             </Tab>
-            <Tab closable="false" text="Discount">
+            <Tab closable="false" text="Popust">
                 <VBox>
-                    <Label text="Article category:">
+                    <Label text="Kategorija proizvoda:">
                   <VBox.margin>
                      <Insets left="5.0" right="5.0" top="5.0" />
                   </VBox.margin></Label>
@@ -75,7 +75,7 @@
                   <VBox.margin>
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </VBox.margin></TextField>
-                    <Label text="Discount:">
+                    <Label text="Popust:">
                   <VBox.margin>
                      <Insets left="5.0" right="5.0" top="5.0" />
                   </VBox.margin></Label>
@@ -85,8 +85,8 @@
                   </VBox.margin></TextField>
                     <ButtonBar>
                         <buttons>
-                            <Button mnemonicParsing="false" onAction="#setDiscount" text="Change" />
-                            <Button mnemonicParsing="false" onAction="#removeDiscount" text="Add" />
+                            <Button mnemonicParsing="false" onAction="#setDiscount" text="Promijeni" />
+                            <Button mnemonicParsing="false" onAction="#removeDiscount" text="Dodaj" />
                         </buttons>
                         <padding>
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -39,18 +39,6 @@ public class UserManagementController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-       /* ObservableList<User> users = (ObservableList<User>) new Obser<User>();
-        try {
-            users = PosDAO.getInstance().getUsers();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ObservableList<String> usersName = (ObservableList<String>) new ArrayList<String>();
-        for (User a:users) {
-            //System.out.println(a.getUsername());
-            usersName.add(a.getUsername());
-        }*/
         ObservableList<User>users = null;
         try {
             users = PosDAO.getInstance().getUsers();
